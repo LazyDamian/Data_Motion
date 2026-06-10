@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming und Politik in Deutschland</title>
+</head>
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <span class="nav-logo">Gaming &amp; Politik</span>
+      <ul class="nav-links">
+        <li><a href="#hero">Start</a></li>
+        <li><a href="#section-cycle">Muster</a></li>
+        <li><a href="#section-paradox">Paradox</a></li>
+        <li><a href="#section-myth">Mythos</a></li>
+        <li><a href="#section-research">Forschung</a></li>
+        <li><a href="#section-media">Medien</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div id="headline-field" class="headline-field" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-label reveal-up" style="--delay:0s">
+        Gaming und Politik in Deutschland
+      </div>
+      <h1 class="hero-title reveal-up" style="--delay:0.12s">
+        Mehr Spiele,<br>
+        <span class="hero-accent">weniger Gewalt.</span>
+      </h1>
+      <p class="hero-sub reveal-up" style="--delay:0.26s">
+        Über zwei Jahrzehnte forderten Politiker nach jedem Amoklauf das Verbot von
+        „Killerspielen". Ein Gesetz kam nie. Die Daten zeigen, warum.
+      </p>
+      <div class="hero-scroll-hint reveal-up" style="--delay:0.45s">
+        <span>Scrollen</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KENNZAHLEN ═══════════════════════════════════════════ -->
+  <section id="section-metrics" class="section-metrics">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-card reveal-up" style="--delay:0s">
+          <div class="metric-num" data-target="-28" data-suffix="%">0%</div>
+          <div class="metric-label">Jugendgewalt 1993 bis 2009</div>
+          <div class="metric-sub">Tatverdächtige unter 21 (BKA PKS)</div>
+        </div>
+        <div class="metric-card reveal-up" style="--delay:0.1s">
+          <div class="metric-num" data-target="2" data-suffix="×">0</div>
+          <div class="metric-label">Anteil Gamer 2000 bis 2020</div>
+          <div class="metric-sub">Mehr als verdoppelt</div>
+        </div>
+        <div class="metric-card reveal-up" style="--delay:0.2s">
+          <div class="metric-num" data-target="0" data-suffix=" Gesetze">0</div>
+          <div class="metric-label">Bundesweite Verbote</div>
+          <div class="metric-sub">Trotz drei Anläufen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 01 DER KREISLAUF ═════════════════════════════════════ -->
+  <section id="section-cycle" class="content-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">01</div>
+        <h2>Das politische Muster</h2>
+        <p class="section-desc">
+          Die Verbotsforderungen folgten stets demselben Ablauf. Sie wurden durch
+          Amokläufe ausgelöst, nicht durch Studien. Jeder Zyklus endete ohne Gesetz.
+          Klick auf einen Knoten, um die Details zu sehen.
+        </p>
+      </div>
+      <div class="cycle-layout reveal-scale" style="--delay:0.1s">
+        <div id="cycle-mount" class="cycle-mount"></div>
+        <div id="cycle-panel" class="cycle-panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 02 DAS PARADOX (Scrollytelling) ══════════════════════ -->
+  <section id="section-paradox" class="content-section alt-bg">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">02</div>
+        <h2>Das Paradox</h2>
+        <p class="section-desc">
+          Scrolle durch den Zeitraum 1993 bis 2009 und beobachte, wie sich
+          Jugendgewalt und Spielemarkt gegeneinander entwickeln.
+        </p>
+      </div>
+    </div>
+
+    <div class="scrolly">
+      <div class="scrolly-inner">
+        <div class="scrolly-graphic">
+          <div class="paradox-legend">
+            <span class="leg-item"><span class="leg-dot" style="background:#ef4444"></span>Gewalt (PKS, Tsd.)</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#3b82f6;border-radius:0;height:3px;width:16px;margin-bottom:3px"></span>Spielemarkt (Mio. €)</span>
+          </div>
+          <div id="paradox-mount" class="paradox-mount"></div>
+        </div>
+        <div id="paradox-steps" class="scrolly-steps">
+          <div class="scrolly-step is-active">
+            <p>Ab 1993 stieg die Zahl der jugendlichen Tatverdächtigen bei Gewaltdelikten zunächst an und erreichte 1998 ihren Höchststand.</p>
+          </div>
+          <div class="scrolly-step">
+            <p>Gleichzeitig wuchs der deutsche Spielemarkt kontinuierlich. Die beiden Trends bewegen sich in entgegengesetzte Richtungen.</p>
+          </div>
+          <div class="scrolly-step">
+            <p>2002, 2005, 2007 und 2009 markieren politische Ereignisse: Amokläufe, Gesetzesanträge, Koalitionsvertrag. Die Gewalt sank trotzdem weiter.</p>
+          </div>
+          <div class="scrolly-step">
+            <p>Am Ende des Zeitraums liegt die Jugendgewalt 28 % unter ihrem Höchstwert, während der Markt um das Vierfache gewachsen ist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 MYTHOS-CHECK ══════════════════════════════════════ -->
+  <section id="section-myth" class="content-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">03</div>
+        <h2>Mythos-Check</h2>
+        <p class="section-desc">
+          Wie viel Prozent der Gewaltbereitschaft erklären Gewaltspiele laut
+          Forschung? Zieh den Regler auf deine Schätzung und deck die Antwort auf.
+        </p>
+      </div>
+
+      <div class="myth-box reveal-scale" style="--delay:0.1s">
+        <div class="myth-value-wrap">
+          <span id="myth-value" class="myth-value">50%</span>
+        </div>
+        <div class="myth-track">
+          <div id="myth-fill" class="myth-fill" style="width:50%"></div>
+          <div id="myth-thumb" class="myth-thumb" style="left:50%"></div>
+          <div id="myth-guess-mark" class="myth-guess-mark" style="left:50%"></div>
+          <input type="range" id="myth-slider" min="0" max="100" value="50"
+                 class="myth-slider" aria-label="Deine Schätzung in Prozent">
+        </div>
+        <div class="myth-labels">
+          <span>0 %</span><span>50 %</span><span>100 %</span>
+        </div>
+        <button id="myth-reveal" class="myth-btn" type="button">Aufdecken</button>
+
+        <div id="myth-result" class="myth-result" style="display:none;">
+          <div class="myth-result-title">Die Forschung sagt:</div>
+          <p>
+            Kein belastbarer ursächlicher Zusammenhang nachgewiesen. Der wissenschaftliche
+            Dienst des Bundestags (2006) und das Hans-Bredow-Institut fanden keine
+            ausreichende Evidenz. Pfeiffer et al. stellten fest: nicht das Spiel allein
+            ist entscheidend, sondern bestehende Risikofaktoren wie familiäre Gewalt
+            oder sozialer Rückzug.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04 FORSCHUNG (Scatter) ═══════════════════════════════ -->
+  <section id="section-research" class="content-section alt-bg">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">04</div>
+        <h2>Spielzeit und Schulnoten</h2>
+        <p class="section-desc">
+          Der stabilste Befund der KFN-Studie (1.156 Grundschüler, 2006 bis 2010):
+          je häufiger und brutaler gespielt wurde, desto schlechter die Schulnoten.
+          Die gestrichelte Linie zeigt den linearen Trend.
+        </p>
+      </div>
+
+      <div class="chart-container reveal-scale" style="--delay:0.1s">
+        <div class="chart-legend chart-legend-toggle">
+          <button class="leg-item" data-ds="0" type="button" aria-pressed="true">
+            <span class="leg-dot" style="background:#3b82f6"></span>Jungen
+          </button>
+          <button class="leg-item" data-ds="1" type="button" aria-pressed="true">
+            <span class="leg-dot" style="background:#d4537e"></span>Mädchen
+          </button>
+          <span class="leg-hint">Anklicken zum Filtern</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartResearch"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 MEDIENNUTZUNG (Isotype) ══════════════════════════ -->
+  <section id="section-media" class="content-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">05</div>
+        <h2>Mediennutzung in Ikonen</h2>
+        <p class="section-desc">
+          Jedes Controller-Symbol steht für 10 Minuten tägliche Nutzung (Schultag).
+          Wechsle zwischen Jungen und Mädchen, um den Unterschied zu sehen.
+        </p>
+      </div>
+
+      <div class="media-section reveal-up" style="--delay:0.1s">
+        <div id="media-toggle" class="media-toggle">
+          <button class="gender-btn active" data-gender="Jungen" type="button">Jungen</button>
+          <button class="gender-btn" data-gender="Mädchen" type="button">Mädchen</button>
+        </div>
+        <div id="media-mount" class="media-mount"></div>
+        <div class="media-source">
+          Quelle: Mößle, T. et al. (2010), <em>British Journal of Developmental Psychology, 28</em>, 699 bis 725. KFN FB108.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QUELLEN ══════════════════════════════════════════════ -->
+  <section id="section-quellen" class="content-section quellen-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-num">06</div>
+        <h2>Quellen</h2>
+      </div>
+      <ul class="quellen-list" role="list">
+        <li class="reveal-up" style="--delay:0.00s">Wissenschaftliche Dienste des Deutschen Bundestages (2006). <em>Ausarbeitung WD-9-223-06: Führt die Nutzung gewalttätiger Computerspiele zu Aggressionen?</em></li>
+        <li class="reveal-up" style="--delay:0.05s">Bundestag Drucksache 15/88 (14. November 2002). <em>Entwurf eines Gesetzes zur Änderung des Jugendschutzgesetzes.</em></li>
+        <li class="reveal-up" style="--delay:0.10s">Koalitionsvertrag CDU/CSU + SPD (2005). S. 123. bundesregierung.de</li>
+        <li class="reveal-up" style="--delay:0.15s">Mößle, T., Kleimann, M., Rehbein, F. &amp; Pfeiffer, C. (2010). Media use and school achievement, boys at risk? <em>British Journal of Developmental Psychology, 28</em>, 699 bis 725.</li>
+        <li class="reveal-up" style="--delay:0.20s">Möller, I. &amp; Krahé, B. (2009). Exposure to violent video games and aggression in German adolescents. <em>Aggressive Behavior, 35</em>, 75 bis 89.</li>
+        <li class="reveal-up" style="--delay:0.25s">KFN Forschungsberichte FB_101 &amp; FB_108 (Pfeiffer et al.). Kriminologisches Forschungsinstitut Niedersachsen.</li>
+        <li class="reveal-up" style="--delay:0.30s">Hans-Bredow-Institut Hamburg. <em>Evaluationsbericht über das deutsche Jugendschutzsystem im Bereich der Video- und Computerspiele.</em></li>
+        <li class="reveal-up" style="--delay:0.35s">Bundeskriminalamt (BKA). <em>Polizeiliche Kriminalstatistik (PKS).</em></li>
+        <li class="reveal-up" style="--delay:0.40s">Bundesministerium für Wirtschaft und Klimaschutz. <em>Förderrichtlinie Computerspiele.</em> bundesregierung.de</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">Datenprojekt zur Killerspiel-Debatte · Gaming und Politik in Deutschland</div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
