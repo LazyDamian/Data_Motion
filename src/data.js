@@ -4,7 +4,15 @@
 
 /* Schwebende Schlagzeilen für den Hero (atmosphärisch, sinngemäß) */
 export const headlines = [
-
+  'Killerspiele verbieten!',
+  'Trainingslager für Amokläufer?',
+  'Gefahr aus dem Kinderzimmer',
+  'Verrohen unsere Kinder?',
+  'Gewalt auf Knopfdruck',
+  'Wann handelt die Politik?',
+  'Mörderische Pixel',
+  'Die Spiele müssen weg',
+  'Wer stoppt den Wahnsinn?',
 ];
 
 /* Der reaktive politische Kreislauf */
@@ -45,9 +53,35 @@ export const researchGirls = [
   { x: 2,   y: 2.2 }, { x: 3,   y: 2.25 }, { x: 4.5, y: 2.3 },
 ];
 
-/* Mediennutzung an Schultagen in Minuten (Mößle et al. 2010, KFN FB108)
-   Jungen spielen an Schultagen rund 130 Min., Mädchen rund 53 Min. */
-export const media = {
-  Jungen:  { fernsehen: 120, videospiele: 130, computer: 40 },
-  Mädchen: { fernsehen: 110, videospiele: 53,  computer: 30 },
+/* ─── Defense / Gamification: Kennzahlen Hero-Block ─── */
+export const defenseStats = [
+  { num: '3,2 Mrd.', label: 'Gamer weltweit' },
+  { num: '2002',     label: "America's Army erschien" },
+  { num: 'MQ-9',     label: 'Drohne via Gamepad gesteuert' },
+];
+
+/* Schwerpunkte der ethischen Bedenken (Original-Aufteilung der HTML) */
+export const ethicsConcerns = {
+  labels: ['Dehumanisierung', 'Rekrutierung durch Spiele', 'PlayStation-Mentalität', 'Datenschutz', 'Sonstiges'],
+  values: [35, 28, 20, 10, 7],
+};
+
+/* Skill-Matching Radar (Spieler-Profil vs. Anforderung Drohnenpilot) */
+export const radarLabels = ['Strategie', 'Reflexe', 'Technik'];
+export const radarRequirement = [90, 80, 70];
+export const radarDefaultPlayer = [75, 85, 60];
+
+/* ─── Wargames & Rekrutierung (Kapitel) ─── */
+export const recruitmentFindings = [
+  { title: 'Militärische Inhalte', text: 'Wargames wie Call of Duty, Battlefield oder Squad orientieren sich an realen Strukturen: Waffen, Ränge, Taktiken und moderne Technik wie Drohnen oder Panzer.' },
+  { title: 'Einstellung zum Militär', text: 'Gamer zeigen häufig höheres Interesse an Militärtechnik und nehmen das Militär eher neutral bis positiv wahr. Interesse bedeutet aber nicht automatisch Rekrutierungsbereitschaft.' },
+  { title: 'Gezielte Nutzung', text: 'Die Bundeswehr tritt auf der Gamescom auf, America\u2019s Army wurde direkt als Rekrutierungsinstrument entwickelt, die U.S. Army betreibt Esports auf Twitch und Discord.' },
+  { title: 'Wissenschaftliche Einordnung', text: 'Es gibt keinen eindeutigen Nachweis, dass Wargames direkt zu Soldaten machen. Die Forschung spricht von indirekter Korrelation statt direkter Kausalität.' },
+];
+
+/* Rekrutierungen vs. America's Army Spielerzahlen (Original-Chart-Daten) */
+export const recruitChart = {
+  labels: ['2000', '2002', '2004', '2006', '2008', '2010'],
+  recruits: [75, 80, 110, 125, 118, 130],
+  players:  [0, 0.5, 4, 8, 10, 13],
 };

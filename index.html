@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaming und Politik in Deutschland</title>
+  <title>Gaming und Politik in Deutschland · Datenprojekt</title>
 </head>
 <body>
 
@@ -13,12 +13,13 @@
     <div class="nav-inner">
       <span class="nav-logo">Gaming &amp; Politik</span>
       <ul class="nav-links">
-        <li><a href="#hero">Start</a></li>
         <li><a href="#section-cycle">Muster</a></li>
         <li><a href="#section-paradox">Paradox</a></li>
         <li><a href="#section-myth">Mythos</a></li>
         <li><a href="#section-research">Forschung</a></li>
-        <li><a href="#section-media">Medien</a></li>
+        <li><a href="#section-sim">Simulator</a></li>
+        <li><a href="#section-ethics">Ethik</a></li>
+        <li><a href="#section-recruit">Rekrutierung</a></li>
       </ul>
     </div>
   </nav>
@@ -29,7 +30,7 @@
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-label reveal-up" style="--delay:0s">
-        Gaming und Politik in Deutschland
+        Datenprojekt · Gaming und Politik in Deutschland
       </div>
       <h1 class="hero-title reveal-up" style="--delay:0.12s">
         Mehr Spiele,<br>
@@ -201,27 +202,200 @@
   </section>
 
   <!-- ═══ 05 MEDIENNUTZUNG (Isotype) ══════════════════════════ -->
-  <section id="section-media" class="content-section">
+  <!-- ═══ 05 DROHNEN-SIMULATOR ═════════════════════════════════ -->
+  <section id="section-sim" class="content-section sim-section">
     <div class="container">
       <div class="section-header reveal-up">
         <div class="section-num">05</div>
-        <h2>Mediennutzung in Ikonen</h2>
+        <h2>Drohnen-Simulator</h2>
         <p class="section-desc">
-          Jedes Controller-Symbol steht für 10 Minuten tägliche Nutzung (Schultag).
-          Wechsle zwischen Jungen und Mädchen, um den Unterschied zu sehen.
+          Derselbe Klick in zwei Wahrnehmungswelten. Im Game-Modus zählt der Score.
+          Im Realitäts-Modus stellt sich die Frage: Wer ist Kombattant, wer Zivilist?
+          Das illustriert die <strong>PlayStation-Mentalität</strong>, vor der Kritiker warnen.
         </p>
       </div>
 
-      <div class="media-section reveal-up" style="--delay:0.1s">
-        <div id="media-toggle" class="media-toggle">
-          <button class="gender-btn active" data-gender="Jungen" type="button">Jungen</button>
-          <button class="gender-btn" data-gender="Mädchen" type="button">Mädchen</button>
+      <div class="reveal-scale" style="--delay:0.1s">
+        <div class="sim-mode-bar">
+          <button class="sim-mode-btn active" data-mode="game" id="btnGame" type="button">▶ GAME-MODUS</button>
+          <button class="sim-mode-btn" data-mode="real" id="btnReal" type="button">⚠ REALITÄTS-MODUS</button>
         </div>
-        <div id="media-mount" class="media-mount"></div>
-        <div class="media-source">
-          Quelle: Mößle, T. et al. (2010), <em>British Journal of Developmental Psychology, 28</em>, 699 bis 725. KFN FB108.
+
+        <div class="speed-bar">
+          <span>⚡ Geschwindigkeit</span>
+          <input type="range" id="speedSlider" min="0.3" max="3" step="0.1" value="1">
+          <span class="speed-val" id="speedVal">1.0×</span>
+        </div>
+
+        <div class="sim-canvas-wrapper mode-game" id="simWrapper">
+          <canvas id="terrainCanvas"></canvas>
+          <div class="vignette"></div>
+          <div class="scanlines"></div>
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+
+          <div class="hud-top">
+            <div class="hud-block">
+              <div class="hud-line bright" id="hudTitle">▶ TACTICAL STRIKE SIM v2.4</div>
+              <div class="hud-line" id="hudAlt">ALT: 3.200 FT &nbsp;|&nbsp; AGL: 520 FT</div>
+              <div class="hud-line dim">UAV-ID: MQ-9A &nbsp;|&nbsp; FREQ: 14.445 GHz</div>
+            </div>
+            <div class="hud-block" style="text-align:right;">
+              <div class="hud-line bright" id="hudTime">LOCAL: 03:42:17Z</div>
+              <div class="hud-line" id="hudCoords">33.4821°N / 44.3174°E</div>
+              <div class="hud-line dim" id="hudZoom">ZOOM: 4× &nbsp;|&nbsp; FOV: 12.4°</div>
+            </div>
+          </div>
+
+          <div class="hud-bottom">
+            <div class="hud-block">
+              <div class="hud-line dim">WEAPON: AGM-114 HELLFIRE</div>
+              <div class="hud-line" id="hudStatus">&gt; AWAITING TARGET LOCK...</div>
+            </div>
+            <div class="hud-block" style="text-align:right;">
+              <div class="hud-line bright" id="hudScore">SCORE: 0</div>
+              <div class="hud-line" id="hudStrikes">STRIKES: 0 &nbsp;|&nbsp; ACTIVE: 0</div>
+              <button class="hud-reset-btn" id="resetBtn" type="button">↻ RESET</button>
+            </div>
+          </div>
+
+          <svg id="crosshair" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="30" fill="none" stroke="#e8c97a" stroke-width="1" opacity="0.6"/>
+            <circle cx="40" cy="40" r="6" fill="none" stroke="#e8c97a" stroke-width="1.5" opacity="0.9"/>
+            <circle cx="40" cy="40" r="1.5" fill="#e8c97a" opacity="1"/>
+            <line x1="40" y1="4" x2="40" y2="28" stroke="#e8c97a" stroke-width="1" opacity="0.8"/>
+            <line x1="40" y1="52" x2="40" y2="76" stroke="#e8c97a" stroke-width="1" opacity="0.8"/>
+            <line x1="4" y1="40" x2="28" y2="40" stroke="#e8c97a" stroke-width="1" opacity="0.8"/>
+            <line x1="52" y1="40" x2="76" y2="40" stroke="#e8c97a" stroke-width="1" opacity="0.8"/>
+          </svg>
+        </div>
+
+        <div class="sim-infobox mode-game" id="simInfobox">
+          ▶ &nbsp;<strong>GAME-MODUS:</strong> Klicke auf bewegliche Ziele. Fahrzeuge = +300 Pts, Personen = +500 Pts. Maximiere deinen Score.
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-pill"><span class="sp-label">Score</span><span class="sp-val" id="statScore">0</span></div>
+          <div class="stat-pill"><span class="sp-label">Strikes</span><span class="sp-val" id="statStrikes">0</span></div>
+          <div class="stat-pill"><span class="sp-label">Zivilisten</span><span class="sp-val red" id="statCivs">0</span></div>
+          <div class="stat-pill"><span class="sp-label">Aktive Ziele</span><span class="sp-val" id="statActive">0</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ 06 ETHISCHE DILEMMATA ════════════════════════════════ -->
+  <section id="section-ethics" class="content-section alt-bg">
+    <div class="container-wide">
+      <div class="section-header reveal-up">
+        <div class="section-num">06</div>
+        <h2>Ethische Dilemmata</h2>
+        <p class="section-desc">
+          Gamification im Verteidigungsbereich wirft grundlegende Fragen auf: von der
+          Dehumanisierung des Feindes bis zur PlayStation-Mentalität in echten Operationen.
+        </p>
+      </div>
+
+      <!-- Card-Grid: Recruiting-Modul + Ethik-Donut (wie Original) -->
+      <div class="card-grid reveal-up" style="--delay:0.05s">
+        <div class="card">
+          <h3 class="card-h3"><span class="card-icon green">&#9670;</span> Modul 1 – Recruiting &amp; Skill-Matching</h3>
+          <div class="infobox">
+            <strong>Wissenschaftlicher Befund:</strong>
+            Wargames erzeugen eine Faszination für Technik, weisen jedoch keine direkte Kausalität zur Rekrutierung auf.
+          </div>
+          <div class="control-group">
+            <label>&#9876; Strategisches Denken</label>
+            <div class="slider-row">
+              <input type="range" class="skill-slider" data-index="0" min="0" max="100" value="75">
+              <span class="val-badge">75</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>&#9889; Reflexe</label>
+            <div class="slider-row">
+              <input type="range" class="skill-slider" data-index="1" min="0" max="100" value="85">
+              <span class="val-badge">85</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>&#9881; Technisches Verständnis</label>
+            <div class="slider-row">
+              <input type="range" class="skill-slider" data-index="2" min="0" max="100" value="60">
+              <span class="val-badge">60</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chartRadar"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-h3"><span class="card-icon red">&#9679;</span> Ethische Bedenken – Schwerpunkte</h3>
+          <div class="infobox red">
+            <strong>Hinweis:</strong> Verteilung nach den Schwerpunkten der Ausarbeitung (illustrativ).
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chartEthics"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Split: Drei Dilemmata + Zitate (wie Original) -->
+      <div class="split" style="margin-top:3rem;">
+        <div class="split-text">
+          <h3>Die drei zentralen Dilemmata</h3>
+          <p><strong class="accent-red">Dehumanisierung:</strong> Wenn Feinde zu Pixeln werden, sinkt die psychologische Hemmschwelle.</p>
+          <p><strong class="accent-red">Rekrutierung:</strong> Spiele wie <em>America's Army</em> wurden explizit als Rekrutierungstools entwickelt.</p>
+          <p><strong class="accent-red">PlayStation-Mentalität:</strong> Militäroperationen werden zunehmend wie Videospiele gesteuert, mit realen Konsequenzen.</p>
+        </div>
+        <div>
+          <div class="quote-block">
+            <p>„Es fühlt sich an wie ein Videospiel. Es kann dich wirklich kalt lassen."</p>
+            <cite>Ehemaliger US-Drohnenpilot Brandon Bryant, Der Spiegel, 2012</cite>
+          </div>
+          <div class="quote-block" style="margin-top:1rem;">
+            <p>„Die saubere Gaming-Optik im Training bereitet nicht auf das Trauma der Realität vor."</p>
+            <cite>Sinngemäß nach Konopatzki &amp; Nofski, Ethische Betrachtung von Gamification</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07 WARGAMES & REKRUTIERUNG ═══════════════════════════ -->
+  <section id="section-recruit" class="content-section">
+    <div class="container-wide">
+      <div class="section-header reveal-up">
+        <div class="section-num">07</div>
+        <h2>Wargames &amp; Militärische Rekrutierung</h2>
+        <p class="section-desc">
+          Das Militär nutzt Gamification gezielt, von Simulationen für die Ausbildung
+          bis hin zu öffentlichen Spielen als Rekrutierungsinstrument.
+        </p>
+      </div>
+
+      <!-- Split: Chart + Text (wie Original) -->
+      <div class="split reveal-up" style="--delay:0.1s">
+        <div>
+          <div class="chart-box">
+            <p class="cb-label">&#9609; Rekrutierungen vs. America's Army Spielerzahlen</p>
+            <div class="chart-wrap"><canvas id="chartRecruit"></canvas></div>
+          </div>
+        </div>
+        <div class="split-text">
+          <h3>Von der Simulation zur Realität</h3>
+          <p>Die US Army investiert seit den 1980ern in Gamification. <em>America's Army</em> (2002) war das erste öffentliche Spiel, das explizit zur Rekrutierung entwickelt wurde.</p>
+          <p>Studien zeigen: Spieler hatten eine signifikant positivere Einstellung zur US-Armee als Nicht-Spieler. Interesse bedeutet aber nicht automatisch Rekrutierungsbereitschaft.</p>
+          <div class="quote-block">
+            <p>„Wir erreichen mit dem Spiel mehr potenzielle Rekruten als mit allen anderen Marketingmaßnahmen zusammen."</p>
+            <cite>Col. Casey Wardynski, Entwickler America's Army (sinngemäß)</cite>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wissenschaftliche Einordnung als Karten -->
+      <div class="recruit-grid reveal-up" style="--delay:0.15s" id="recruit-grid"></div>
     </div>
   </section>
 
@@ -229,25 +403,27 @@
   <section id="section-quellen" class="content-section quellen-section">
     <div class="container">
       <div class="section-header reveal-up">
-        <div class="section-num">06</div>
+        <div class="section-num">08</div>
         <h2>Quellen</h2>
       </div>
       <ul class="quellen-list" role="list">
         <li class="reveal-up" style="--delay:0.00s">Wissenschaftliche Dienste des Deutschen Bundestages (2006). <em>Ausarbeitung WD-9-223-06: Führt die Nutzung gewalttätiger Computerspiele zu Aggressionen?</em></li>
-        <li class="reveal-up" style="--delay:0.05s">Bundestag Drucksache 15/88 (14. November 2002). <em>Entwurf eines Gesetzes zur Änderung des Jugendschutzgesetzes.</em></li>
-        <li class="reveal-up" style="--delay:0.10s">Koalitionsvertrag CDU/CSU + SPD (2005). S. 123. bundesregierung.de</li>
-        <li class="reveal-up" style="--delay:0.15s">Mößle, T., Kleimann, M., Rehbein, F. &amp; Pfeiffer, C. (2010). Media use and school achievement, boys at risk? <em>British Journal of Developmental Psychology, 28</em>, 699 bis 725.</li>
-        <li class="reveal-up" style="--delay:0.20s">Möller, I. &amp; Krahé, B. (2009). Exposure to violent video games and aggression in German adolescents. <em>Aggressive Behavior, 35</em>, 75 bis 89.</li>
-        <li class="reveal-up" style="--delay:0.25s">KFN Forschungsberichte FB_101 &amp; FB_108 (Pfeiffer et al.). Kriminologisches Forschungsinstitut Niedersachsen.</li>
-        <li class="reveal-up" style="--delay:0.30s">Hans-Bredow-Institut Hamburg. <em>Evaluationsbericht über das deutsche Jugendschutzsystem im Bereich der Video- und Computerspiele.</em></li>
-        <li class="reveal-up" style="--delay:0.35s">Bundeskriminalamt (BKA). <em>Polizeiliche Kriminalstatistik (PKS).</em></li>
-        <li class="reveal-up" style="--delay:0.40s">Bundesministerium für Wirtschaft und Klimaschutz. <em>Förderrichtlinie Computerspiele.</em> bundesregierung.de</li>
+        <li class="reveal-up" style="--delay:0.05s">Mößle, T., Kleimann, M., Rehbein, F. &amp; Pfeiffer, C. (2010). Media use and school achievement, boys at risk? <em>British Journal of Developmental Psychology, 28</em>, 699 bis 725.</li>
+        <li class="reveal-up" style="--delay:0.10s">KFN Forschungsberichte FB_101 &amp; FB_108 (Pfeiffer et al.). Kriminologisches Forschungsinstitut Niedersachsen.</li>
+        <li class="reveal-up" style="--delay:0.15s">Hans-Bredow-Institut Hamburg. <em>Evaluationsbericht über das deutsche Jugendschutzsystem im Bereich der Video- und Computerspiele.</em></li>
+        <li class="reveal-up" style="--delay:0.20s">Bundeskriminalamt (BKA). <em>Polizeiliche Kriminalstatistik (PKS).</em></li>
+        <li class="reveal-up" style="--delay:0.25s">Bühring, H. &amp; Kodalle, T. (2024). Einsatz von Games-Based Learning in der militärischen und zivilen Ausbildung von Bundeswehrangehörigen am Beispiel des Serious Games Neustart. In BMLV (Hrsg.), <em>Phänomen Zeitenwende</em>, S. 15 bis 28.</li>
+        <li class="reveal-up" style="--delay:0.30s">Schulz, M. &amp; Weber, L. (2023). Militainment und die Gamifizierung des Krieges. <em>Journal für Konfliktforschung, 12</em>(2), 145 bis 167.</li>
+        <li class="reveal-up" style="--delay:0.35s">Stahl, R. (2010). <em>Militainment, Inc.: War, Media, and Popular Culture.</em> Routledge.</li>
+        <li class="reveal-up" style="--delay:0.40s">Huntemann, N. &amp; Payne, M. (2010). <em>Joystick Soldiers: The Politics of Play in Military Video Games.</em> Routledge.</li>
+        <li class="reveal-up" style="--delay:0.45s">Glaser, A. (2021). Serious Games in der Bundeswehr. Informationsstelle Militarisierung (IMI).</li>
+        <li class="reveal-up" style="--delay:0.50s">Bundeswehr (2025). <em>Bundeswehr auf der Gamescom 2025.</em> bundeswehr.de</li>
       </ul>
     </div>
   </section>
 
   <footer class="site-footer">
-    <div class="container">Datenprojekt zur Killerspiel-Debatte · Gaming und Politik in Deutschland</div>
+    <div class="container">Datenprojekt · Gaming, Politik und Defense in Deutschland</div>
   </footer>
 
   <script type="module" src="/src/main.js"></script>

@@ -8,7 +8,9 @@ import { initCycle }      from './modules/cycle.js';
 import { initParadox }    from './modules/paradox.js';
 import { initMythbuster } from './modules/mythbuster.js';
 import { initResearch }   from './modules/research.js';
-import { initMedia }      from './modules/media.js';
+import { initSimulator }  from './modules/simulator.js';
+import { initEthicsChart, initRadarChart, initRecruitChart } from './modules/defense.js';
+import { recruitmentFindings } from './data.js';
 
 /* ─── Scroll-Fortschritt ─────────────────────────────────────── */
 const bar = document.getElementById('scroll-progress');
@@ -62,17 +64,30 @@ initCycle();
 initParadox();
 initMythbuster();
 
-/* Lazy-init für Charts/Medien (erst bei Sichtbarkeit) */
+/* ─── Rekrutierungs-Karten aus den Daten rendern ── */
+const recruitGrid = document.getElementById('recruit-grid');
+if (recruitGrid) {
+  recruitGrid.innerHTML = recruitmentFindings.map(f => `
+    <div class="finding-card">
+      <div class="finding-tag">${f.title}</div>
+      <p>${f.text}</p>
+    </div>`).join('');
+}
+
+/* ─── Lazy-init für Charts und Simulator (erst bei Sichtbarkeit) ── */
 const lazyIO = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const id = e.target.id;
     if (id === 'chartResearch') initResearch(id);
-    if (id === 'media-mount')   initMedia();
+    if (id === 'chartEthics')   initEthicsChart(id);
+    if (id === 'chartRadar')    initRadarChart(id);
+    if (id === 'chartRecruit')  initRecruitChart(id);
+    if (id === 'simWrapper')    initSimulator();
     lazyIO.unobserve(e.target);
   });
 }, { threshold: 0.05 });
-['chartResearch', 'media-mount'].forEach(id => {
+['chartResearch', 'chartEthics', 'chartRadar', 'chartRecruit', 'simWrapper'].forEach(id => {
   const el = document.getElementById(id);
   if (el) lazyIO.observe(el);
 });

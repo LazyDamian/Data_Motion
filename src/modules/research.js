@@ -18,25 +18,7 @@ function regression(points) {
 export function initResearch(canvasId) {
   const ctx = document.getElementById(canvasId).getContext('2d');
 
-  /* Choreografierte Animation:
-     1) Punkte erscheinen gestaffelt (Reihenfolge nach x-Wert), wachsen aus Radius 0 auf
-     2) Während sie wachsen, fallen sie sanft von oben (y-Wert) auf ihre Endposition
-     3) Die Trendlinien zeichnen sich anschließend von links nach rechts */
-
-  const POINT_DUR = 600;     /* Dauer eines einzelnen Punkts */
-  const STAGGER   = 90;      /* Verzögerung zwischen Punkten */
-  const LINE_DUR  = 900;     /* Dauer der Trendlinie */
-
-  /* Hilfsfunktion: Punkt-Index → Verzögerung */
-  function pointDelay(ctx) {
-    if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
-    return ctx.dataIndex * STAGGER;
-  }
-  function lineDelay(allPointsCount) {
-    return allPointsCount * STAGGER + 200;
-  }
-
-  const totalPoints = researchBoys.length + researchGirls.length;
+  /* Animation: Punkte ploppen gestaffelt auf, dann erscheinen die Trendlinien */
 
   const chart = new Chart(ctx, {
     type: 'scatter',
@@ -56,38 +38,13 @@ export function initResearch(canvasId) {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      /* Per-property Animationen (zaubert die Choreografie) */
-      animations: {
-        /* Punkte: Radius wächst von 0, gestaffelt */
-        radius: {
-          duration: POINT_DUR,
-          easing: 'easeOutBack',
-          delay: pointDelay,
-          from: 0,
-          loop: false,
-        },
-        /* Punkte fallen vertikal ein (y-Pixel) */
-        y: {
-          duration: POINT_DUR,
-          easing: 'easeOutCubic',
-          delay: pointDelay,
-          from: (ctx) => {
-            if (ctx.type !== 'data' || ctx.mode !== 'default') return undefined;
-            /* Startpunkt 60 Pixel über dem Endpunkt */
-            return ctx.chart.chartArea?.top ?? 0;
-          },
-        },
-        /* Linien zeichnen sich erst nach allen Punkten */
-        x: {
-          type: 'number',
-          duration: LINE_DUR,
-          easing: 'easeOutQuart',
-          delay: (ctx) => {
-            if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
-            /* nur Trend-Linien betroffen */
-            if (!ctx.dataset.label?.startsWith('Trend')) return pointDelay(ctx);
-            return lineDelay(totalPoints) + (ctx.dataIndex * (LINE_DUR / 2));
-          },
+      animation: {
+        duration: 700,
+        easing: 'easeOutBack',
+        delay: (ctx) => {
+          if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
+          if (ctx.dataset.label?.startsWith('Trend')) return ctx.dataIndex * 200 + 800;
+          return ctx.dataIndex * 80 + (ctx.datasetIndex < 2 ? 0 : 200);
         },
       },
       plugins: {
