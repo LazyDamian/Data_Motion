@@ -4,15 +4,7 @@
 
 /* Schwebende Schlagzeilen für den Hero (atmosphärisch, sinngemäß) */
 export const headlines = [
-  'Killerspiele verbieten!',
-  'Trainingslager für Amokläufer?',
-  'Gefahr aus dem Kinderzimmer',
-  'Verrohen unsere Kinder?',
-  'Gewalt auf Knopfdruck',
-  'Wann handelt die Politik?',
-  'Mörderische Pixel',
-  'Die Spiele müssen weg',
-  'Wer stoppt den Wahnsinn?',
+
 ];
 
 /* Der reaktive politische Kreislauf */
