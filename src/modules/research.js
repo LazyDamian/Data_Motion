@@ -73,16 +73,106 @@ export function initResearch(canvasId) {
     container.querySelectorAll('.chart-legend-toggle .leg-item').forEach(btn => {
       btn.addEventListener('click', () => {
         const pair = btn.dataset.ds === '0' ? [0, 1] : [2, 3];
-        const nowVisible = chart.isDatasetVisible(pair[0]);
+        const willShow = !chart.isDatasetVisible(pair[0]);
 
         const visibleGroups = chart.isDatasetVisible(0) + chart.isDatasetVisible(2);
-        if (nowVisible && visibleGroups <= 1) return; /* nie beide aus */
+        if (!willShow && visibleGroups <= 1) return; /* nie beide aus */
 
-        pair.forEach(i => chart.setDatasetVisibility(i, !nowVisible));
-        btn.classList.toggle('disabled', nowVisible);
-        btn.setAttribute('aria-pressed', String(!nowVisible));
-        chart.update();
+        pair.forEach(i => chart.setDatasetVisibility(i, willShow));
+        btn.classList.toggle('disabled', !willShow);
+        btn.setAttribute('aria-pressed', String(willShow));
+
+        if (willShow) {
+          /* Punkte sofort registrieren, Linie kurz verzögert weich einblenden */
+          const lineIdx = pair[1];
+          chart.setDatasetVisibility(lineIdx, false);
+          chart.update('none');
+          animateGroupIn(chart, pair[0]);
+          /* Trendlinie erscheint, wenn die Punkte fast fertig sind */
+          setTimeout(() => {
+            chart.setDatasetVisibility(lineIdx, true);
+            chart.update();   /* weiche Standard-Animation zeichnet die Linie */
+          }, 320);
+        } else {
+          /* Ausblenden: erst Punkte gestaffelt schrumpfen, dann verbergen */
+          /* Sichtbarkeit oben war schon gesetzt → für die Schrumpf-Animation rückgängig */
+          pair.forEach(i => chart.setDatasetVisibility(i, true));
+          chart.update('none');
+          animateGroupOut(chart, pair[0], pair[1]);
+        }
       });
     });
   }
+}
+
+/* Punkte eines Datasets gestaffelt einploppen lassen (Radius 0 -> Endgröße) */
+function animateGroupIn(chart, pointDsIndex) {
+  const ds = chart.data.datasets[pointDsIndex];
+  const finalR = ds.pointRadius ?? 10;
+  const STAGGER = 70;   /* ms zwischen Punkten */
+  const GROW = 380;     /* ms Aufplopp-Dauer pro Punkt */
+  const start = performance.now();
+
+  function easeOutBack(t) {
+    const c1 = 1.70158, c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  }
+
+  function frame(now) {
+    let done = true;
+    const radii = ds.data.map((_, i) => {
+      const local = (now - start - i * STAGGER) / GROW;
+      if (local < 1) done = false;
+      const t = Math.max(0, Math.min(1, local));
+      return finalR * easeOutBack(t);
+    });
+    ds.pointRadius = radii;
+    chart.update('none');
+    if (!done) {
+      requestAnimationFrame(frame);
+    } else {
+      ds.pointRadius = finalR;   /* sauberer Endzustand, Hover funktioniert wieder */
+      chart.update('none');
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* Punkte gestaffelt schrumpfen, dann Dataset + Trendlinie ausblenden */
+function animateGroupOut(chart, pointDsIndex, lineDsIndex) {
+  const ds = chart.data.datasets[pointDsIndex];
+  const startR = ds.pointRadius ?? 10;
+  const STAGGER = 50;   /* ms zwischen Punkten (von rechts nach links) */
+  const SHRINK = 280;   /* ms Schrumpf-Dauer pro Punkt */
+  const total  = ds.data.length;
+  const start  = performance.now();
+
+  function easeInCubic(t) { return t * t * t; }
+
+  /* Trendlinie schon zu Beginn der Schrumpfung weich ausblenden */
+  chart.setDatasetVisibility(lineDsIndex, false);
+  chart.update();
+
+  function frame(now) {
+    let done = true;
+    const radii = ds.data.map((_, i) => {
+      /* von rechts beginnen: letzter Punkt schrumpft zuerst */
+      const reverseIndex = total - 1 - i;
+      const local = (now - start - reverseIndex * STAGGER) / SHRINK;
+      if (local < 1) done = false;
+      const t = Math.max(0, Math.min(1, local));
+      return startR * (1 - easeInCubic(t));
+    });
+    ds.pointRadius = radii;
+    chart.update('none');
+    if (!done) {
+      requestAnimationFrame(frame);
+    } else {
+      /* Punkte komplett verstecken, Radius für nächste Einblendung zurücksetzen */
+      chart.setDatasetVisibility(pointDsIndex, false);
+      ds.pointRadius = startR;
+      chart.update('none');
+    }
+  }
+  requestAnimationFrame(frame);
 }

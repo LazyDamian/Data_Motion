@@ -11,12 +11,12 @@
 
   <nav id="nav" role="navigation" aria-label="Hauptnavigation">
     <div class="nav-inner">
-      <span class="nav-logo">Gaming &amp; Politik</span>
+      <span class="nav-logo">Gaming &amp; Defense</span>
       <ul class="nav-links">
         <li><a href="#section-cycle">Muster</a></li>
         <li><a href="#section-paradox">Paradox</a></li>
-        <li><a href="#section-myth">Mythos</a></li>
         <li><a href="#section-research">Forschung</a></li>
+        <li><a href="#section-bridge">Wende</a></li>
         <li><a href="#section-sim">Simulator</a></li>
         <li><a href="#section-ethics">Ethik</a></li>
         <li><a href="#section-recruit">Rekrutierung</a></li>
@@ -30,15 +30,16 @@
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-label reveal-up" style="--delay:0s">
-        Datenprojekt · Gaming und Politik in Deutschland
+        Datenprojekt · Gaming Community &amp; Defense
       </div>
       <h1 class="hero-title reveal-up" style="--delay:0.12s">
-        Mehr Spiele,<br>
-        <span class="hero-accent">weniger Gewalt.</span>
+        Von der Debatte<br>
+        <span class="hero-accent">zur Drohne</span>
       </h1>
       <p class="hero-sub reveal-up" style="--delay:0.26s">
-        Über zwei Jahrzehnte forderten Politiker nach jedem Amoklauf das Verbot von
-        „Killerspielen". Ein Gesetz kam nie. Die Daten zeigen, warum.
+        Erst galten „Killerspiele" als Gefahr für die Jugend. Heute ist Gaming
+        Mainstream, und dieselbe Spielkultur dient dem Militär zur Ausbildung und
+        Rekrutierung. Die Geschichte einer Kehrtwende.
       </p>
       <div class="hero-scroll-hint reveal-up" style="--delay:0.45s">
         <span>Scrollen</span>
@@ -74,7 +75,7 @@
   <section id="section-cycle" class="content-section">
     <div class="container">
       <div class="section-header reveal-up">
-        <div class="section-num">01</div>
+        <div class="section-num"><span class="part-tag">Teil 1 · Die Debatte</span>01</div>
         <h2>Das politische Muster</h2>
         <p class="section-desc">
           Die Verbotsforderungen folgten stets demselben Ablauf. Sie wurden durch
@@ -129,84 +130,161 @@
     </div>
   </section>
 
-  <!-- ═══ 03 MYTHOS-CHECK ══════════════════════════════════════ -->
-  <section id="section-myth" class="content-section">
+  <!-- ═══ 03 WAS DIE FORSCHUNG WIRKLICH SAGT ═══════════════════ -->
+  <section id="section-research" class="content-section">
     <div class="container">
       <div class="section-header reveal-up">
         <div class="section-num">03</div>
-        <h2>Mythos-Check</h2>
+        <h2>Was die Forschung wirklich sagt</h2>
         <p class="section-desc">
-          Wie viel Prozent der Gewaltbereitschaft erklären Gewaltspiele laut
-          Forschung? Zieh den Regler auf deine Schätzung und deck die Antwort auf.
+          Die Verbotsdebatte stützte sich auf die Annahme: Spiele führen zu aggressivem Verhalten.
+          Über Jahre untersuchten Studien
+          die Behauptung. Das Ergebnis ist nicht so eindeutig, wie es zuerst scheint.
         </p>
       </div>
 
-      <div class="myth-box reveal-scale" style="--delay:0.1s">
-        <div class="myth-value-wrap">
-          <span id="myth-value" class="myth-value">50%</span>
+      <!-- TEIL A: Mythos der Aggression -->
+      <div class="research-part reveal-up" style="--delay:0.05s">
+        <div class="research-part-head">
+          <span class="research-part-num">A</span>
+          <div>
+            <h3 class="research-part-title">Der Mythos der Aggression</h3>
+            <p class="research-part-sub">„Killerspiele machen Menschen gewalttätig."</p>
+          </div>
         </div>
-        <div class="myth-track">
-          <div id="myth-fill" class="myth-fill" style="width:50%"></div>
-          <div id="myth-thumb" class="myth-thumb" style="left:50%"></div>
-          <div id="myth-guess-mark" class="myth-guess-mark" style="left:50%"></div>
-          <input type="range" id="myth-slider" min="0" max="100" value="50"
-                 class="myth-slider" aria-label="Deine Schätzung in Prozent">
-        </div>
-        <div class="myth-labels">
-          <span>0 %</span><span>50 %</span><span>100 %</span>
-        </div>
-        <button id="myth-reveal" class="myth-btn" type="button">Aufdecken</button>
+        <p class="research-context">
+          Der wissenschaftliche Dienst des Bundestags kam 2006 zu einem klaren Schluss:
+          Es lässt sich nicht belegen, dass Gewaltspiele Menschen gewalttätig machen.
+          Die meisten Studien waren Kurzzeitexperimente im Labor, in denen Aggression
+          über künstliche Reize wie laute Geräusche gemessen wurde. Eine Übertragung auf
+          reale Gewalt war damit nicht gegeben. Wie hoch würdest du den Anteil schätzen,
+          den Gewaltspiele an der Gewaltbereitschaft erklären?
+        </p>
 
-        <div id="myth-result" class="myth-result" style="display:none;">
-          <div class="myth-result-title">Die Forschung sagt:</div>
-          <p>
-            Kein belastbarer ursächlicher Zusammenhang nachgewiesen. Der wissenschaftliche
-            Dienst des Bundestags (2006) und das Hans-Bredow-Institut fanden keine
-            ausreichende Evidenz. Pfeiffer et al. stellten fest: nicht das Spiel allein
-            ist entscheidend, sondern bestehende Risikofaktoren wie familiäre Gewalt
-            oder sozialer Rückzug.
-          </p>
+        <div class="myth-box reveal-scale" style="--delay:0.1s">
+          <div class="myth-value-wrap">
+            <span id="myth-value" class="myth-value">50%</span>
+          </div>
+          <div class="myth-track">
+            <div id="myth-fill" class="myth-fill" style="width:50%"></div>
+            <div id="myth-thumb" class="myth-thumb" style="left:50%"></div>
+            <div id="myth-guess-mark" class="myth-guess-mark" style="left:50%"></div>
+            <input type="range" id="myth-slider" min="0" max="100" value="50"
+                   class="myth-slider" aria-label="Deine Schätzung in Prozent">
+          </div>
+          <div class="myth-labels">
+            <span>0 %</span><span>50 %</span><span>100 %</span>
+          </div>
+          <button id="myth-reveal" class="myth-btn" type="button">Aufdecken</button>
+
+          <div id="myth-result" class="myth-result" style="display:none;">
+            <div class="myth-result-title">Die Forschung sagt:</div>
+            <p>
+              Kein belastbarer ursächlicher Zusammenhang. Das Hans-Bredow-Institut fand
+              keine Zunahme von Aggressivität durch Gewaltspiele. Wahrscheinlicher ist
+              eine Selektion: aggressivere Jugendliche greifen eher zu solchen Spielen.
+              Pfeiffer brachte es auf den Punkt: man wird kein Amokläufer, weil man ein
+              brutales Computerspiel gespielt hat.
+            </p>
+          </div>
         </div>
+      </div>
+
+      <!-- TEIL B: Mythos der Schulnoten -->
+      <div class="research-part reveal-up" style="--delay:0.05s">
+        <div class="research-part-head">
+          <span class="research-part-num">B</span>
+          <div>
+            <h3 class="research-part-title">Der eigentliche Befund: Schulnoten</h3>
+            <p class="research-part-sub">Wo die Forschung tatsächlich einen Zusammenhang fand.</p>
+          </div>
+        </div>
+        <p class="research-context">
+          Pfeiffer und das KFN begleiteten 1.156 Grundschüler über mehrere Jahre, statt
+          sie nur einmal zu befragen. Der stabilste Befund betraf nicht Gewalt, sondern
+          die Schule: je häufiger und brutaler gespielt wurde, desto schlechter fielen
+          die Schulnoten aus. Dieser Zusammenhang war in den Daten deutlicher als der
+          Gewaltbefund und wurde als zentrales Ergebnis kommuniziert. Sichtbar ist auch
+          der Geschlechterunterschied, der den Effekt bei Jungen verstärkt.
+        </p>
+
+        <div class="chart-container reveal-scale" style="--delay:0.1s">
+          <div class="chart-legend chart-legend-toggle">
+            <button class="leg-item" data-ds="0" type="button" aria-pressed="true">
+              <span class="leg-dot" style="background:#3b82f6"></span>Jungen
+            </button>
+            <button class="leg-item" data-ds="1" type="button" aria-pressed="true">
+              <span class="leg-dot" style="background:#d4537e"></span>Mädchen
+            </button>
+            <span class="leg-hint">Anklicken zum Filtern</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chartResearch"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAZIT -->
+      <div class="research-fazit reveal-up" style="--delay:0.1s">
+        <div class="research-fazit-tag">Fazit</div>
+        <p>
+          Beide Mythen halten der Prüfung nicht stand. Gewaltspiele machen nicht
+          gewalttätig, und wo ein Zusammenhang besteht, ist nicht das Spiel allein
+          entscheidend, sondern das soziale Umfeld. Gaming war nicht das Sicherheitsproblem,
+          für das es politisch gehalten wurde. Eine Erkenntnis, die den Weg für einen
+          ganz anderen Umgang mit Spielen ebnete.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 04 FORSCHUNG (Scatter) ═══════════════════════════════ -->
-  <section id="section-research" class="content-section alt-bg">
+  <!-- ═══ BRÜCKE: Von der Debatte zur Realität ═════════════════ -->
+  <section id="section-bridge" class="bridge-section">
     <div class="container">
-      <div class="section-header reveal-up">
-        <div class="section-num">04</div>
-        <h2>Spielzeit und Schulnoten</h2>
-        <p class="section-desc">
-          Der stabilste Befund der KFN-Studie (1.156 Grundschüler, 2006 bis 2010):
-          je häufiger und brutaler gespielt wurde, desto schlechter die Schulnoten.
-          Die gestrichelte Linie zeigt den linearen Trend.
+      <div class="bridge-inner reveal-up">
+        <div class="bridge-eyebrow">Der Wendepunkt</div>
+        <h2 class="bridge-headline">
+          Während Deutschland noch über Verbote stritt,
+          <span class="bridge-accent">hatte die Realität die Debatte längst überholt.</span>
+        </h2>
+        <p class="bridge-text">
+          Die Killerspiel-Debatte ging von einer Annahme aus: Gaming sei eine Gefahr,
+          die man eindämmen müsse. Doch die Daten widerlegten das, und die Gesellschaft
+          wandelte sich. Gaming wurde vom verdächtigen Randphänomen zum kulturellen
+          Mainstream mit Milliardenpublikum.
         </p>
-      </div>
+        <p class="bridge-text">
+          Und genau diese Entwicklung nutzt heute eine Institution sehr gezielt, die in
+          der Verbotsdebatte nie vorkam: das Militär. Dieselbe Spielästhetik, die einst
+          als Bedrohung galt, wird nun zum Werkzeug für Training, Steuerung und
+          Rekrutierung.
+        </p>
 
-      <div class="chart-container reveal-scale" style="--delay:0.1s">
-        <div class="chart-legend chart-legend-toggle">
-          <button class="leg-item" data-ds="0" type="button" aria-pressed="true">
-            <span class="leg-dot" style="background:#3b82f6"></span>Jungen
-          </button>
-          <button class="leg-item" data-ds="1" type="button" aria-pressed="true">
-            <span class="leg-dot" style="background:#d4537e"></span>Mädchen
-          </button>
-          <span class="leg-hint">Anklicken zum Filtern</span>
+        <div class="bridge-flip">
+          <div class="bridge-flip-side then">
+            <div class="bridge-flip-tag">Damals</div>
+            <div class="bridge-flip-text">Gaming als Gefahr für die Jugend</div>
+          </div>
+          <div class="bridge-flip-arrow">→</div>
+          <div class="bridge-flip-side now">
+            <div class="bridge-flip-tag">Heute</div>
+            <div class="bridge-flip-text">Gaming als Werkzeug des Militärs</div>
+          </div>
         </div>
-        <div class="chart-wrap">
-          <canvas id="chartResearch"></canvas>
+
+        <div class="bridge-scroll-hint">
+          <span>Die zweite Geschichte beginnt</span>
+          <div class="scroll-arrow"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 05 MEDIENNUTZUNG (Isotype) ══════════════════════════ -->
   <!-- ═══ 05 DROHNEN-SIMULATOR ═════════════════════════════════ -->
   <section id="section-sim" class="content-section sim-section">
     <div class="container">
       <div class="section-header reveal-up">
-        <div class="section-num">05</div>
+        <div class="section-num"><span class="part-tag part-tag-2">Teil 2 · Gaming &amp; Defense</span>01</div>
         <h2>Drohnen-Simulator</h2>
         <p class="section-desc">
           Derselbe Klick in zwei Wahrnehmungswelten. Im Game-Modus zählt der Score.
@@ -288,7 +366,7 @@
   <section id="section-ethics" class="content-section alt-bg">
     <div class="container-wide">
       <div class="section-header reveal-up">
-        <div class="section-num">06</div>
+        <div class="section-num">02</div>
         <h2>Ethische Dilemmata</h2>
         <p class="section-desc">
           Gamification im Verteidigungsbereich wirft grundlegende Fragen auf: von der
@@ -367,7 +445,7 @@
   <section id="section-recruit" class="content-section">
     <div class="container-wide">
       <div class="section-header reveal-up">
-        <div class="section-num">07</div>
+        <div class="section-num">03</div>
         <h2>Wargames &amp; Militärische Rekrutierung</h2>
         <p class="section-desc">
           Das Militär nutzt Gamification gezielt, von Simulationen für die Ausbildung
@@ -403,7 +481,7 @@
   <section id="section-quellen" class="content-section quellen-section">
     <div class="container">
       <div class="section-header reveal-up">
-        <div class="section-num">08</div>
+        <div class="section-num">04</div>
         <h2>Quellen</h2>
       </div>
       <ul class="quellen-list" role="list">

@@ -75,6 +75,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .section-header{margin-bottom:3rem;max-width:720px}
 .section-num{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:var(--accent);margin-bottom:.75rem}
+.part-tag{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;
+  color:var(--danger);margin-bottom:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.part-tag-2{color:var(--accent)}
 .section-header h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:700;
   letter-spacing:-.03em;line-height:1.15;margin-bottom:1.25rem}
 .section-desc{font-size:1.125rem;color:var(--text);line-height:1.75;font-weight:400}
@@ -154,8 +157,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .scrolly-step p{font-size:17px;color:var(--text);line-height:1.7;font-weight:400}
 .scrolly-step:not(.is-active) p{color:var(--text-2)}
 
+/* ═══ 03 WAS DIE FORSCHUNG WIRKLICH SAGT ═══════════════════════ */
+.research-part{margin-bottom:3.5rem}
+.research-part-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.research-part-num{flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;
+  color:var(--accent);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3)}
+.research-part-title{font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2}
+.research-part-sub{font-size:15px;color:var(--text-2);margin-top:.25rem;font-style:italic}
+.research-context{font-size:1.05rem;color:var(--text-2);line-height:1.8;max-width:760px;margin-bottom:1.75rem}
+
+.research-fazit{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);
+  border-radius:var(--radius);padding:1.75rem 2rem;margin-top:1rem}
+.research-fazit-tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.75rem}
+.research-fazit p{font-size:1.1rem;color:var(--text);line-height:1.75}
+
 /* ═══ 03 MYTHOS-CHECK ══════════════════════════════════════════ */
-.myth-box{max-width:620px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);
+.myth-box{max-width:620px;margin:0;background:var(--bg-card);border:1px solid var(--border);
   border-radius:var(--radius);padding:2.5rem}
 .myth-value-wrap{text-align:center;margin-bottom:1.5rem}
 .myth-value{font-size:4.5rem;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;
@@ -327,6 +346,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .stat-pill .sp-val{font-size:17px;font-weight:bold;color:var(--sand-bright);font-family:'Courier New',monospace}
 .stat-pill .sp-val.red{color:var(--danger)}
 
+/* ═══ BRÜCKE: Übergang zu Defense ══════════════════════════════ */
+.bridge-section{position:relative;padding:9rem 0;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,var(--bg) 0%,#0a0e1f 50%,var(--bg) 100%);overflow:hidden}
+.bridge-section::before{content:'';position:absolute;top:50%;left:50%;width:700px;height:700px;
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,rgba(59,130,246,.08),transparent 65%)}
+.bridge-inner{position:relative;max-width:760px;margin:0 auto;text-align:center}
+.bridge-eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.5rem}
+.bridge-headline{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.25;
+  letter-spacing:-.02em;margin-bottom:2rem;color:var(--text-2)}
+.bridge-accent{color:var(--text);display:block;margin-top:.3rem}
+.bridge-text{font-size:1.1rem;color:var(--text-2);line-height:1.8;margin-bottom:1.25rem;
+  max-width:640px;margin-left:auto;margin-right:auto}
+
+.bridge-flip{display:flex;align-items:stretch;justify-content:center;gap:1rem;
+  margin:3rem auto 2.5rem;flex-wrap:wrap}
+.bridge-flip-side{flex:1;min-width:220px;max-width:300px;border-radius:var(--radius);
+  padding:1.75rem 1.5rem;border:1px solid var(--border)}
+.bridge-flip-side.then{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.25)}
+.bridge-flip-side.now{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.3)}
+.bridge-flip-tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.then .bridge-flip-tag{color:var(--danger)}
+.now .bridge-flip-tag{color:var(--accent)}
+.bridge-flip-text{font-size:16px;color:var(--text);font-weight:500;line-height:1.5}
+.bridge-flip-arrow{display:flex;align-items:center;font-size:1.8rem;color:var(--text-3)}
+
+.bridge-scroll-hint{display:inline-flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:1rem}
+.bridge-scroll-hint .scroll-arrow{width:1px;height:40px}
+
 /* ═══ FOOTER ═══════════════════════════════════════════════════ */
 .site-footer{border-top:1px solid var(--border);padding:2rem 0;font-size:12px;color:var(--text-3);text-align:center}
 
@@ -353,6 +403,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
   .sim-mode-btn{font-size:12px;padding:9px 14px}
   .hud-line{font-size:9px}
   .hud-line.bright{font-size:11px}
+  .bridge-flip-arrow{transform:rotate(90deg)}
+  .bridge-section{padding:6rem 0}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
