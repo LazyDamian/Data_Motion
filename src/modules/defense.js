@@ -85,32 +85,49 @@ export function initRadarChart(canvasId) {
 export function initRecruitChart(canvasId) {
   const el = document.getElementById(canvasId);
   if (!el) return;
-  new Chart(el.getContext('2d'), {
-    type: 'bar',
+
+  const { labels, recruits, players } = recruitChart;
+
+  const chart = new Chart(el.getContext('2d'), {
     data: {
-      labels: recruitChart.labels,
+      labels,
       datasets: [
-        { label: 'Rekrutierungen (Tsd.)', data: recruitChart.recruits,
-          backgroundColor: '#ef4444', borderRadius: 4 },
-        { label: "America's Army Spieler (Mio.)", data: recruitChart.players,
-          backgroundColor: '#3b82f6', borderRadius: 4 },
+        { type: 'bar', label: 'Rekrutierungen (Tsd.)', data: recruits,
+          backgroundColor: 'rgba(239,68,68,0.85)', borderRadius: 4, yAxisID: 'yRec', order: 2 },
+        { type: 'line', label: "America's Army Spieler (Mio.)", data: players,
+          borderColor: '#3b82f6', backgroundColor: '#3b82f6', borderWidth: 3,
+          pointRadius: 5, pointHoverRadius: 8, tension: 0.3, yAxisID: 'yPly', order: 1 },
       ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       animation: { duration: 1000, easing: 'easeOutQuart' },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { labels: { color: '#94a3b8', font: { size: 13 } } },
+        legend: { labels: { color: '#94a3b8', font: { size: 13 }, usePointStyle: true } },
         tooltip: {
           backgroundColor: 'rgba(10,12,26,0.96)', borderColor: 'rgba(255,255,255,0.08)', borderWidth: 1,
           titleColor: '#f1f5f9', bodyColor: '#94a3b8', padding: 12,
+          callbacks: {
+            label: (c) => {
+              const unit = c.dataset.type === 'bar' ? ' Tsd.' : ' Mio.';
+              return ` ${c.dataset.label.split(' (')[0]}: ${c.parsed.y}${unit}`;
+            },
+          },
         },
       },
       scales: {
         x: { ticks: { color: '#94a3b8', font: { size: 12 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: { beginAtZero: true, ticks: { color: '#94a3b8', font: { size: 12 } },
-             grid: { color: 'rgba(255,255,255,0.04)' },
-             title: { display: true, text: 'Anzahl', color: '#64748b', font: { size: 12 } } },
+        yRec: {
+          type: 'linear', position: 'left', beginAtZero: true,
+          ticks: { color: '#ef4444', font: { size: 12 } }, grid: { color: 'rgba(255,255,255,0.04)' },
+          title: { display: true, text: 'Rekrutierungen (Tsd.)', color: '#ef4444', font: { size: 12 } },
+        },
+        yPly: {
+          type: 'linear', position: 'right', beginAtZero: true,
+          ticks: { color: '#3b82f6', font: { size: 12 } }, grid: { drawOnChartArea: false },
+          title: { display: true, text: "Spieler (Mio.)", color: '#3b82f6', font: { size: 12 } },
+        },
       },
     },
   });

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaming und Politik in Deutschland · Datenprojekt</title>
+  <title>Gaming und Politik in Deutschland</title>
 </head>
 <body>
 
@@ -49,28 +49,6 @@
   </section>
 
   <!-- ═══ KENNZAHLEN ═══════════════════════════════════════════ -->
-  <section id="section-metrics" class="section-metrics">
-    <div class="container">
-      <div class="metrics-grid">
-        <div class="metric-card reveal-up" style="--delay:0s">
-          <div class="metric-num" data-target="-28" data-suffix="%">0%</div>
-          <div class="metric-label">Jugendgewalt 1993 bis 2009</div>
-          <div class="metric-sub">Tatverdächtige unter 21 (BKA PKS)</div>
-        </div>
-        <div class="metric-card reveal-up" style="--delay:0.1s">
-          <div class="metric-num" data-target="2" data-suffix="×">0</div>
-          <div class="metric-label">Anteil Gamer 2000 bis 2020</div>
-          <div class="metric-sub">Mehr als verdoppelt</div>
-        </div>
-        <div class="metric-card reveal-up" style="--delay:0.2s">
-          <div class="metric-num" data-target="0" data-suffix=" Gesetze">0</div>
-          <div class="metric-label">Bundesweite Verbote</div>
-          <div class="metric-sub">Trotz drei Anläufen</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══ 01 DER KREISLAUF ═════════════════════════════════════ -->
   <section id="section-cycle" class="content-section">
     <div class="container">
@@ -97,8 +75,10 @@
         <div class="section-num">02</div>
         <h2>Das Paradox</h2>
         <p class="section-desc">
-          Scrolle durch den Zeitraum 1993 bis 2009 und beobachte, wie sich
-          Jugendgewalt und Spielemarkt gegeneinander entwickeln.
+          Scrolle durch den Zeitraum 2007 bis 2019 und beobachte, wie sich
+          Jugendgewalt und Spielemarkt gegeneinander entwickeln. Der Zeitraum
+          beginnt mit dem Höchststand der Jugendgewalt, in dem die politische
+          Verbotsdebatte ihren Höhepunkt erreichte.
         </p>
       </div>
     </div>
@@ -107,24 +87,45 @@
       <div class="scrolly-inner">
         <div class="scrolly-graphic">
           <div class="paradox-legend">
-            <span class="leg-item"><span class="leg-dot" style="background:#ef4444"></span>Gewalt (PKS, Tsd.)</span>
-            <span class="leg-item"><span class="leg-dot" style="background:#3b82f6;border-radius:0;height:3px;width:16px;margin-bottom:3px"></span>Spielemarkt (Mio. €)</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#ef4444"></span>Gewalt-TVBZ Jugendliche</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#3b82f6;border-radius:0;height:3px;width:16px;margin-bottom:3px"></span>Gamesmarkt (Mio. €)</span>
           </div>
           <div id="paradox-mount" class="paradox-mount"></div>
         </div>
         <div id="paradox-steps" class="scrolly-steps">
           <div class="scrolly-step is-active">
-            <p>Ab 1993 stieg die Zahl der jugendlichen Tatverdächtigen bei Gewaltdelikten zunächst an und erreichte 1998 ihren Höchststand.</p>
+            <p>2007 erreichte die Tatverdächtigenbelastung Jugendlicher bei Gewalttaten ihren Höchststand der letzten 20 Jahre. Genau in dieser Phase forderte die Politik am lautesten Killerspielverbote.</p>
           </div>
           <div class="scrolly-step">
-            <p>Gleichzeitig wuchs der deutsche Spielemarkt kontinuierlich. Die beiden Trends bewegen sich in entgegengesetzte Richtungen.</p>
+            <p>In den folgenden Jahren sank die Jugendgewalt deutlich. Bis 2015 war die TVBZ etwa halbiert (Quelle: DJI, KFN, BKA).</p>
           </div>
           <div class="scrolly-step">
-            <p>2002, 2005, 2007 und 2009 markieren politische Ereignisse: Amokläufe, Gesetzesanträge, Koalitionsvertrag. Die Gewalt sank trotzdem weiter.</p>
+            <p>2007 (Bayerischer Antrag) und 2009 (Winnenden) markieren die letzten großen politischen Versuche, Killerspiele bundesweit zu verbieten. Beide blieben ohne Gesetz.</p>
           </div>
           <div class="scrolly-step">
-            <p>Am Ende des Zeitraums liegt die Jugendgewalt 28 % unter ihrem Höchstwert, während der Markt um das Vierfache gewachsen ist.</p>
+            <p>Während die Jugendgewalt bis 2019 um über die Hälfte zurückging, vervierfachte sich der deutsche Gamesmarkt im selben Zeitraum. Das eine schloss das andere offensichtlich nicht aus.</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zusammenfassung als Kennzahlen -->
+    <div id="section-metrics" class="container">
+      <div class="metrics-grid">
+        <div class="metric-card reveal-up" style="--delay:0s">
+          <div class="metric-num" data-target="-51" data-suffix="%">0%</div>
+          <div class="metric-label">Jugendgewalt 2007 bis 2019</div>
+          <div class="metric-sub">TVBZ Jugendliche 14-17, Gewalttaten (BKA PKS / DJI)</div>
+        </div>
+        <div class="metric-card reveal-up" style="--delay:0.1s">
+          <div class="metric-num" data-target="4" data-suffix="×">0</div>
+          <div class="metric-label">Gamesmarkt 2007 bis 2019</div>
+          <div class="metric-sub">Umsatz mehr als vervierfacht (game-Verband)</div>
+        </div>
+        <div class="metric-card reveal-up" style="--delay:0.2s">
+          <div class="metric-num" data-target="0" data-suffix=" Gesetze">0</div>
+          <div class="metric-label">Bundesweite Verbote</div>
+          <div class="metric-sub">Trotz drei Anläufen</div>
         </div>
       </div>
     </div>
@@ -137,13 +138,12 @@
         <div class="section-num">03</div>
         <h2>Was die Forschung wirklich sagt</h2>
         <p class="section-desc">
-          Die Verbotsdebatte stützte sich auf die Annahme: Spiele führen zu aggressivem Verhalten.
-          Über Jahre untersuchten Studien
-          die Behauptung. Das Ergebnis ist nicht so eindeutig, wie es zuerst scheint.
+          Die Verbotsdebatte stützte sich auf eine zentrale Annahme: Spiele machen
+          aggressiv. Wie viel Wahrheit steckt dahinter?
         </p>
       </div>
 
-      <!-- TEIL A: Mythos der Aggression -->
+      <!-- TEIL A: Mythos der Aggression (mit Rate-Mechanik) -->
       <div class="research-part reveal-up" style="--delay:0.05s">
         <div class="research-part-head">
           <span class="research-part-num">A</span>
@@ -153,12 +153,9 @@
           </div>
         </div>
         <p class="research-context">
-          Der wissenschaftliche Dienst des Bundestags kam 2006 zu einem klaren Schluss:
-          Es lässt sich nicht belegen, dass Gewaltspiele Menschen gewalttätig machen.
-          Die meisten Studien waren Kurzzeitexperimente im Labor, in denen Aggression
-          über künstliche Reize wie laute Geräusche gemessen wurde. Eine Übertragung auf
-          reale Gewalt war damit nicht gegeben. Wie hoch würdest du den Anteil schätzen,
-          den Gewaltspiele an der Gewaltbereitschaft erklären?
+          Wie hoch würdest du den Anteil schätzen, den Gewaltspiele an der
+          Gewaltbereitschaft erklären? Zieh den Regler auf deine Schätzung und
+          deck die Antwort auf.
         </p>
 
         <div class="myth-box reveal-scale" style="--delay:0.1s">
@@ -180,60 +177,56 @@
           <div id="myth-result" class="myth-result" style="display:none;">
             <div class="myth-result-title">Die Forschung sagt:</div>
             <p>
-              Kein belastbarer ursächlicher Zusammenhang. Das Hans-Bredow-Institut fand
-              keine Zunahme von Aggressivität durch Gewaltspiele. Wahrscheinlicher ist
-              eine Selektion: aggressivere Jugendliche greifen eher zu solchen Spielen.
-              Pfeiffer brachte es auf den Punkt: man wird kein Amokläufer, weil man ein
-              brutales Computerspiel gespielt hat.
+              Kein belastbarer ursächlicher Zusammenhang. Der Bundestag stellte 2006 fest:
+              kein Beleg. Das Hans-Bredow-Institut fand keine Zunahme von Aggressivität
+              durch Gewaltspiele. Aggressivere Jugendliche greifen eher zu solchen Spielen,
+              nicht umgekehrt.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- TEIL B: Mythos der Schulnoten -->
-      <div class="research-part reveal-up" style="--delay:0.05s">
-        <div class="research-part-head">
-          <span class="research-part-num">B</span>
-          <div>
-            <h3 class="research-part-title">Der eigentliche Befund: Schulnoten</h3>
-            <p class="research-part-sub">Wo die Forschung tatsächlich einen Zusammenhang fand.</p>
+      <!-- TEIL B: Schulnoten - wird erst nach dem Aufdecken sichtbar -->
+      <div id="research-followup" class="research-followup" hidden>
+        <div class="research-part">
+          <div class="research-part-head">
+            <span class="research-part-num">B</span>
+            <div>
+              <h3 class="research-part-title">Der eigentliche Befund</h3>
+              <p class="research-part-sub">Wo die Forschung tatsächlich einen Zusammenhang fand: bei den Schulnoten.</p>
+            </div>
+          </div>
+          <p class="research-context">
+            Pfeiffer und das KFN begleiteten 1.156 Grundschüler über mehrere Jahre. Der
+            stabilste Befund betraf nicht Gewalt, sondern die Schule: je häufiger und
+            brutaler gespielt wurde, desto schlechter die Noten, besonders bei Jungen.
+          </p>
+
+          <div class="chart-container">
+            <div class="chart-legend chart-legend-toggle">
+              <button class="leg-item" data-ds="0" type="button" aria-pressed="true">
+                <span class="leg-dot" style="background:#3b82f6"></span>Jungen
+              </button>
+              <button class="leg-item" data-ds="1" type="button" aria-pressed="true">
+                <span class="leg-dot" style="background:#d4537e"></span>Mädchen
+              </button>
+              <span class="leg-hint">Anklicken zum Filtern</span>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chartResearch"></canvas>
+            </div>
           </div>
         </div>
-        <p class="research-context">
-          Pfeiffer und das KFN begleiteten 1.156 Grundschüler über mehrere Jahre, statt
-          sie nur einmal zu befragen. Der stabilste Befund betraf nicht Gewalt, sondern
-          die Schule: je häufiger und brutaler gespielt wurde, desto schlechter fielen
-          die Schulnoten aus. Dieser Zusammenhang war in den Daten deutlicher als der
-          Gewaltbefund und wurde als zentrales Ergebnis kommuniziert. Sichtbar ist auch
-          der Geschlechterunterschied, der den Effekt bei Jungen verstärkt.
-        </p>
 
-        <div class="chart-container reveal-scale" style="--delay:0.1s">
-          <div class="chart-legend chart-legend-toggle">
-            <button class="leg-item" data-ds="0" type="button" aria-pressed="true">
-              <span class="leg-dot" style="background:#3b82f6"></span>Jungen
-            </button>
-            <button class="leg-item" data-ds="1" type="button" aria-pressed="true">
-              <span class="leg-dot" style="background:#d4537e"></span>Mädchen
-            </button>
-            <span class="leg-hint">Anklicken zum Filtern</span>
-          </div>
-          <div class="chart-wrap">
-            <canvas id="chartResearch"></canvas>
-          </div>
+        <!-- FAZIT -->
+        <div class="research-fazit">
+          <div class="research-fazit-tag">Fazit</div>
+          <p>
+            Gewaltspiele machen nicht gewalttätig. Wo ein Zusammenhang besteht, ist
+            nicht das Spiel allein entscheidend, sondern das soziale Umfeld. Gaming
+            war nicht das Sicherheitsproblem, für das es politisch gehalten wurde.
+          </p>
         </div>
-      </div>
-
-      <!-- FAZIT -->
-      <div class="research-fazit reveal-up" style="--delay:0.1s">
-        <div class="research-fazit-tag">Fazit</div>
-        <p>
-          Beide Mythen halten der Prüfung nicht stand. Gewaltspiele machen nicht
-          gewalttätig, und wo ein Zusammenhang besteht, ist nicht das Spiel allein
-          entscheidend, sondern das soziale Umfeld. Gaming war nicht das Sicherheitsproblem,
-          für das es politisch gehalten wurde. Eine Erkenntnis, die den Weg für einen
-          ganz anderen Umgang mit Spielen ebnete.
-        </p>
       </div>
     </div>
   </section>
@@ -377,7 +370,7 @@
       <!-- Card-Grid: Recruiting-Modul + Ethik-Donut (wie Original) -->
       <div class="card-grid reveal-up" style="--delay:0.05s">
         <div class="card">
-          <h3 class="card-h3"><span class="card-icon green">&#9670;</span> Modul 1 – Recruiting &amp; Skill-Matching</h3>
+          <h3 class="card-h3"><span class="card-icon green">&#9670;</span> Modul 1 - Recruiting &amp; Skill-Matching</h3>
           <div class="infobox">
             <strong>Wissenschaftlicher Befund:</strong>
             Wargames erzeugen eine Faszination für Technik, weisen jedoch keine direkte Kausalität zur Rekrutierung auf.
@@ -409,9 +402,9 @@
         </div>
 
         <div class="card">
-          <h3 class="card-h3"><span class="card-icon red">&#9679;</span> Ethische Bedenken – Schwerpunkte</h3>
+          <h3 class="card-h3"><span class="card-icon red">&#9679;</span> Ethische Bedenken - Expertenbefragung</h3>
           <div class="infobox red">
-            <strong>Hinweis:</strong> Verteilung nach den Schwerpunkten der Ausarbeitung (illustrativ).
+            <strong>Hinweis:</strong> Platzhalter-Daten. Werden mit echten Umfrageergebnissen ersetzt.
           </div>
           <div class="chart-wrapper">
             <canvas id="chartEthics"></canvas>
@@ -433,8 +426,8 @@
             <cite>Ehemaliger US-Drohnenpilot Brandon Bryant, Der Spiegel, 2012</cite>
           </div>
           <div class="quote-block" style="margin-top:1rem;">
-            <p>„Die saubere Gaming-Optik im Training bereitet nicht auf das Trauma der Realität vor."</p>
-            <cite>Sinngemäß nach Konopatzki &amp; Nofski, Ethische Betrachtung von Gamification</cite>
+            <p>„Die Distanz macht es einfacher. Und das ist genau das Problem."</p>
+            <cite>Platzhalter: Expertenzitat (Quelle folgt)</cite>
           </div>
         </div>
       </div>
@@ -459,6 +452,10 @@
           <div class="chart-box">
             <p class="cb-label">&#9609; Rekrutierungen vs. America's Army Spielerzahlen</p>
             <div class="chart-wrap"><canvas id="chartRecruit"></canvas></div>
+            <p class="cb-foot">
+              Linke Achse: Rekrutierungen in Tausend. Rechte Achse: Spieler in Millionen.
+              Beide Kurven steigen parallel.
+            </p>
           </div>
         </div>
         <div class="split-text">
@@ -501,7 +498,7 @@
   </section>
 
   <footer class="site-footer">
-    <div class="container">Datenprojekt · Gaming, Politik und Defense in Deutschland</div>
+    <div class="container">Gaming, Politik und Defense in Deutschland</div>
   </footer>
 
   <script type="module" src="/src/main.js"></script>

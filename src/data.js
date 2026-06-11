@@ -4,35 +4,56 @@
 
 /* Schwebende Schlagzeilen für den Hero (atmosphärisch, sinngemäß) */
 export const headlines = [
+  'Killerspiele verbieten!',
+  'Wann handelt die Politik?',
+  'Ethische Bedenken bleiben',
+  'Fakten statt Panikmache',
+
+
 
 ];
 
-/* Der reaktive politische Kreislauf */
+/* Der reaktive politische Kreislauf.
+   Jede Phase hat eine Liste konkreter historischer Beispiele,
+   die thematisch zu dieser Phase passen (statt sie 1:1 zu den Knoten zu mappen). */
 export const cyclePhases = [
-  { key: 'amoklauf',  label: 'Amoklauf',         desc: 'Ein Einzelereignis erschüttert die Öffentlichkeit.' },
-  { key: 'forderung', label: 'Verbotsforderung', desc: 'Politiker fordern reflexartig ein Verbot von „Killerspielen".' },
-  { key: 'debatte',   label: 'Debatte',          desc: 'Es folgt eine hitzige öffentliche Diskussion ohne klare Faktenbasis.' },
-  { key: 'kein',      label: 'Kein Gesetz',      desc: 'Die Forderung verläuft im Sande. Ein Bundesgesetz kommt nie.' },
+  { key: 'amoklauf',  label: 'Amoklauf',         desc: 'Ein Einzelereignis erschüttert die Öffentlichkeit.',
+    examples: [
+      { year: 2002, title: 'Erfurt',    text: 'Ein 19-Jähriger tötet an seiner ehemaligen Schule 16 Menschen. Er wird als Counter-Strike-Spieler identifiziert.' },
+      { year: 2009, title: 'Winnenden', text: 'Ein 17-Jähriger tötet an der Albertville-Realschule 15 Menschen. In den Medien wird sein PC-Konsum schnell thematisiert.' },
+    ] },
+  { key: 'forderung', label: 'Verbotsforderung', desc: 'Politiker fordern reflexartig ein Verbot von „Killerspielen".',
+    examples: [
+      { year: 2002, title: 'Erste Forderungen', text: 'Im Bundestag werden direkt nach Erfurt erstmals Verbote von Killerspielen gefordert.' },
+      { year: 2007, title: 'Bayerischer Antrag', text: 'Bayern beantragt im Bundesrat, Herstellung und Verbreitung von Killerspielen unter Strafe zu stellen.' },
+    ] },
+  { key: 'debatte',   label: 'Debatte',          desc: 'Es folgt eine hitzige öffentliche Diskussion, oft ohne klare Faktenbasis.',
+    examples: [
+      { year: 2005, title: 'Koalitionsvertrag', text: 'CDU/CSU und SPD nehmen das Thema in den Koalitionsvertrag auf (S. 123). Eine breite öffentliche Debatte folgt.' },
+      { year: 2006, title: 'Bundestags-Gutachten', text: 'Der Wissenschaftliche Dienst des Bundestags stellt fest: keine Evidenz für einen Kausalzusammenhang.' },
+    ] },
+  { key: 'kein',      label: 'Kein Gesetz',      desc: 'Die Forderung verläuft im Sande. Ein Bundesgesetz kommt nie.',
+    examples: [
+      { year: 2007, title: 'Antrag scheitert', text: 'Der bayerische Antrag scheitert an der unscharfen Definition von „Killerspielen".' },
+      { year: 2009, title: 'Nach Winnenden',   text: 'Die Innenministerkonferenz beschließt Verschärfungen, ein bundesweites Verbot bleibt aus.' },
+    ] },
 ];
 
-/* Historische Ereignisse */
-export const events = [
-  { year: 2002, title: 'Erfurt', text: 'Ein Counter-Strike-Spieler tötet 16 Menschen. Im Bundestag werden erstmals Verbote von „Killerspielen" gefordert. Ein konkretes Gesetz folgt nicht.' },
-  { year: 2005, title: 'Koalitionsvertrag', text: 'CDU/CSU und SPD schreiben ein Verbot in den Koalitionsvertrag (S. 123). Gesetzliche Schritte bleiben aus.' },
-  { year: 2007, title: 'Bayerischer Antrag', text: 'Bayern beantragt, Herstellung und Verbreitung unter Strafe zu stellen. Der Antrag scheitert an der unscharfen Definition.' },
-  { year: 2009, title: 'Winnenden', text: 'Ein Täter tötet 15 Menschen. Die Innenministerkonferenz beschließt Verschärfungen. Erneut folgt kein Bundesgesetz.' },
-];
+/* TVBZ Jugendliche (14-17) bei Gewaltkriminalität (deutsche Tatverdächtige je 100.000)
+   Zeitraum 2007-2019: nach dem Höchststand 2007 sinkt die Jugendgewalt kontinuierlich.
+   Quellen: BKA PKS, DJI/KFN. 2007 ca. 1.267 (Höchststand), 2015 ca. 493, 2019 ca. 616.
+   Werte für Zwischenjahre interpoliert aus den DJI-Berichten (Zahlen-Daten-Fakten Jugendgewalt). */
+export const years    = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019];
+export const pksTsd   = [1267, 1190, 1100, 1000,  910,  820,  720,  610,  493,  520,  545,  580,  616];
 
-/* PKS: Tatverdächtige unter 21 bei Gewaltdelikten, in Tausend
-   (BKA PKS, Trendverlauf 1993–2009 mit rund 28 % Rückgang) */
-export const years   = [1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009];
-export const pksTsd  = [162,168,175,181,188,193,186,179,171,162,155,150,143,135,127,119,112];
-
-/* Spielemarkt Deutschland in Mio. Euro (game Verband / GfK) */
-export const marktMio = [380,420,470,520,580,620,670,730,820,900,1010,1130,1250,1390,1510,1620,1700];
+/* Deutscher Gamesmarkt in Mio. Euro (Umsatz Games + Hardware)
+   Quellen: game-Verband / GfK, BIU Jahresberichte.
+   Werte vor 2012 sind Branchen-Schätzungen, ab 2012 game-Verband-Daten.
+   2007-2011 vor Mobile-Boom, ab 2012 mit Smartphone-Spielen, ab 2017 Methodikwechsel. */
+export const marktMio = [1500, 1700, 1860, 1990, 2070, 2200, 2280, 2540, 2810, 2890, 3370, 4377, 6200];
 
 /* Jahre, die als politisches Ereignis markiert werden */
-export const eventYears = [2002, 2005, 2007, 2009];
+export const eventYears = [2007, 2009];
 
 /* Forschung: Spielzeit (h/Tag) vs. Schulnote, nach Geschlecht
    (modellierter Verlauf nach Pfeiffer/KFN: mehr Spielzeit, schlechtere Noten) */

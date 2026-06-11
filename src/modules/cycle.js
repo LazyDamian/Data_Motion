@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { cyclePhases, events } from '../data.js';
+import { cyclePhases } from '../data.js';
 
 export function initCycle() {
   const mount = document.getElementById('cycle-mount');
@@ -154,11 +154,16 @@ export function initCycle() {
   function selectPhase(i) {
     nodes.forEach((n, k) => n.g.classList.toggle('active', k === i));
     const phase = cyclePhases[i];
-    const ev = events[i];
+    const examples = (phase.examples || [])
+      .map(ev => `<div class="cycle-panel-event"><span class="cycle-panel-year">${ev.year} · ${ev.title}</span>${ev.text}</div>`)
+      .join('');
+    const examplesLabel = phase.examples && phase.examples.length
+      ? `<div class="cycle-panel-examples-label">Konkrete Beispiele</div>`
+      : '';
     panel.innerHTML = `
       <div class="cycle-panel-phase">${phase.label}</div>
       <p class="cycle-panel-desc">${phase.desc}</p>
-      ${ev ? `<div class="cycle-panel-event"><span class="cycle-panel-year">${ev.year} · ${ev.title}</span>${ev.text}</div>` : ''}
+      ${examplesLabel}${examples}
     `;
     gsap.fromTo(panel, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
   }

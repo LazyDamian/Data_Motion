@@ -1,6 +1,10 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { years, pksTsd, marktMio, eventYears, events } from '../data.js';
+import { years, pksTsd, marktMio, eventYears, cyclePhases } from '../data.js';
+
+/* Flache Lookup-Liste aller historischen Beispiele aus dem Kreislauf,
+   für die Event-Markierung im Paradox-Diagramm (Jahr -> Titel). */
+const eventLookup = cyclePhases.flatMap(p => p.examples || []);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,9 +22,9 @@ export function initParadox() {
   const n = years.length;
   const xAt = i => pad.l + (i / (n - 1)) * plotW;
 
-  /* getrennte Skalen */
-  const pksMin = 100, pksMax = 200;
-  const mktMin = 300, mktMax = 1750;
+  /* getrennte Skalen, angepasst an neue Daten (TVBZ 2007-2019, Umsatz in Mio. €) */
+  const pksMin = 400,  pksMax = 1350;
+  const mktMin = 1300, mktMax = 6500;
   const yPks = v => pad.t + plotH - ((v - pksMin) / (pksMax - pksMin)) * plotH;
   const yMkt = v => pad.t + plotH - ((v - mktMin) / (mktMax - mktMin)) * plotH;
 
@@ -42,7 +46,7 @@ export function initParadox() {
     l.setAttribute('class', 'paradox-grid');
     grid.appendChild(l);
   });
-  [0, 4, 8, 12, 16].forEach(i => {
+  [0, 3, 6, 9, 12].forEach(i => {
     const t = document.createElementNS(NS, 'text');
     t.setAttribute('x', xAt(i)); t.setAttribute('y', H - pad.b + 26);
     t.setAttribute('text-anchor', 'middle');
@@ -56,7 +60,7 @@ export function initParadox() {
   const axL = document.createElementNS(NS, 'text');
   axL.setAttribute('x', pad.l - 6); axL.setAttribute('y', pad.t - 22);
   axL.setAttribute('class', 'paradox-axis-title'); axL.setAttribute('fill', '#ef4444');
-  axL.textContent = 'Gewalt (Tsd.)';
+  axL.textContent = 'Gewalt-TVBZ (je 100.000 Jugendliche)';
   svg.appendChild(axL);
   const axR = document.createElementNS(NS, 'text');
   axR.setAttribute('x', W - pad.r + 6); axR.setAttribute('y', pad.t - 22);
@@ -168,11 +172,11 @@ export function initParadox() {
     dotMkt.setAttribute('cx', gx); dotMkt.setAttribute('cy', yMkt(marktMio[i]));
     guide.style.opacity = 1; dotPks.style.opacity = 1; dotMkt.style.opacity = 1;
 
-    const ev = events.find(e => e.year === years[i]);
+    const ev = eventLookup.find(e => e.year === years[i]);
     tip.innerHTML = `
       <div class="tip-year">${years[i]}</div>
-      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} Tsd. Tatverdächtige</div>
-      <div class="tip-row"><span class="tip-dot dot-mkt"></span>${marktMio[i]} Mio. € Umsatz</div>
+      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} TVBZ Jugendgewalt</div>
+      <div class="tip-row"><span class="tip-dot dot-mkt"></span>${marktMio[i].toLocaleString('de-DE')} Mio. € Marktumsatz</div>
       ${ev ? `<div class="tip-event">⚑ ${ev.title}</div>` : ''}
     `;
     const leftPct = (gx / W) * 100;

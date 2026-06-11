@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 
-export function initMythbuster() {
+export function initMythbuster(onReveal) {
   const slider = document.getElementById('myth-slider');
   const value  = document.getElementById('myth-value');
   const btn    = document.getElementById('myth-reveal');
@@ -8,6 +8,7 @@ export function initMythbuster() {
   const fill   = document.getElementById('myth-fill');
   const thumb  = document.getElementById('myth-thumb');
   const guessMark = document.getElementById('myth-guess-mark');
+  const followup  = document.getElementById('research-followup');
   if (!slider) return;
 
   let revealed = false;
@@ -27,7 +28,7 @@ export function initMythbuster() {
 
   btn.addEventListener('click', () => {
     if (revealed) {
-      /* zurücksetzen */
+      /* zurücksetzen: nur Mythos-Box, der Followup-Block bleibt sichtbar */
       revealed = false;
       slider.disabled = false;
       btn.textContent = 'Aufdecken';
@@ -50,7 +51,7 @@ export function initMythbuster() {
     fill.classList.add('truth');
     const obj = { v: Number(slider.value) };
     gsap.to(obj, {
-      v: 4,
+      v: 0,
       duration: 1.4,
       ease: 'power3.inOut',
       onUpdate() {
@@ -62,5 +63,15 @@ export function initMythbuster() {
 
     result.style.display = 'block';
     gsap.fromTo(result, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.6, ease: 'power2.out' });
+
+    /* Followup (Schulnoten-Befund + Chart) einmalig freischalten */
+    if (followup && followup.hasAttribute('hidden')) {
+      followup.removeAttribute('hidden');
+      gsap.fromTo(followup,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.9, delay: 1.0, ease: 'power2.out',
+          onComplete: () => { if (typeof onReveal === 'function') onReveal(); }
+        });
+    }
   });
 }

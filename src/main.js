@@ -62,7 +62,14 @@ if (ms) counterIO.observe(ms);
 initHero();
 initCycle();
 initParadox();
-initMythbuster();
+/* Mythbuster bekommt einen Callback: nach dem Aufdecken wird der
+   Schulnoten-Chart einmalig mit voller Aufplopp-Animation initialisiert. */
+let researchInited = false;
+initMythbuster(() => {
+  if (researchInited) return;
+  researchInited = true;
+  initResearch('chartResearch');
+});
 
 /* ─── Rekrutierungs-Karten aus den Daten rendern ── */
 const recruitGrid = document.getElementById('recruit-grid');
@@ -79,7 +86,6 @@ const lazyIO = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const id = e.target.id;
-    if (id === 'chartResearch') initResearch(id);
     if (id === 'chartEthics')   initEthicsChart(id);
     if (id === 'chartRadar')    initRadarChart(id);
     if (id === 'chartRecruit')  initRecruitChart(id);
@@ -87,7 +93,7 @@ const lazyIO = new IntersectionObserver(entries => {
     lazyIO.unobserve(e.target);
   });
 }, { threshold: 0.05 });
-['chartResearch', 'chartEthics', 'chartRadar', 'chartRecruit', 'simWrapper'].forEach(id => {
+['chartEthics', 'chartRadar', 'chartRecruit', 'simWrapper'].forEach(id => {
   const el = document.getElementById(id);
   if (el) lazyIO.observe(el);
 });

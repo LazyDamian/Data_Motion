@@ -57,7 +57,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
     rgba(59,130,246,.08),transparent 60%);transition:background .15s}
 
 /* ═══ KENNZAHLEN ═══════════════════════════════════════════════ */
-.section-metrics{padding:5rem 0;border-top:1px solid var(--border)}
+#section-metrics{padding:3.5rem 0 1rem}
 .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
 .metric-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
   padding:2rem 1.75rem;transition:border-color .25s,transform .25s}
@@ -104,10 +104,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
   padding:2.25rem;min-height:320px}
 .cycle-panel-phase{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
   background:rgba(59,130,246,.12);display:inline-block;padding:8px 16px;border-radius:var(--radius-sm);margin-bottom:1.5rem}
-.cycle-panel-desc{font-size:18px;color:var(--text);line-height:1.65;margin-bottom:1.75rem;font-weight:400}
-.cycle-panel-event{font-size:16px;color:var(--text-2);line-height:1.7;
-  border-top:1px solid var(--border);padding-top:1.25rem}
-.cycle-panel-year{display:block;font-weight:700;color:var(--text);margin-bottom:.5rem;font-size:18px;letter-spacing:.02em}
+.cycle-panel-desc{font-size:18px;color:var(--text);line-height:1.65;margin-bottom:1.5rem;font-weight:400}
+.cycle-panel-examples-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);margin-top:1.25rem;margin-bottom:.5rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.cycle-panel-event{font-size:15px;color:var(--text-2);line-height:1.65;padding:.85rem 0}
+.cycle-panel-event + .cycle-panel-event{border-top:1px dashed var(--border)}
+.cycle-panel-year{display:block;font-weight:700;color:var(--text);margin-bottom:.35rem;font-size:15px;letter-spacing:.02em}
 
 /* ═══ 02 PARADOX (Scrollytelling) ══════════════════════════════ */
 .scrolly{position:relative}
@@ -267,7 +269,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 /* Chart-Box (Original mit Label oben) */
 .chart-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
 .chart-box .chart-wrap{height:340px}
-.cb-label{font-size:13px;font-weight:500;color:var(--text-2);margin-bottom:1rem;letter-spacing:.02em}
+.cb-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.cb-label{font-size:13px;font-weight:500;color:var(--text-2);letter-spacing:.02em;margin:0}
+.cb-toggle{display:flex;gap:4px;background:var(--bg-alt);border:1px solid var(--border);border-radius:99px;padding:3px}
+.cb-toggle-btn{font-family:inherit;font-size:12px;font-weight:600;color:var(--text-2);
+  background:transparent;border:none;border-radius:99px;padding:5px 14px;cursor:pointer;transition:all .2s}
+.cb-toggle-btn:hover{color:var(--text)}
+.cb-toggle-btn.active{color:#fff;background:var(--accent)}
+.cb-foot{margin-top:1rem;font-size:13px;color:var(--text-3);line-height:1.6}
 
 /* ═══ QUELLEN ══════════════════════════════════════════════════ */
 .quellen-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
