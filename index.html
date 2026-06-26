@@ -4,10 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gaming und Politik in Deutschland</title>
-  <link rel="icon" type="image/svg+xml" href="/Data_Motion/favicon.svg">
-  <link rel="icon" type="image/x-icon" href="/Data_Motion/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/Data_Motion/apple-touch-icon.png">
   <link rel="manifest" href="/Data_Motion/site.webmanifest">
+  <link rel="icon" id="favicon" type="image/png" href="/Data_Motion/favicon-light.png">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favicon = document.getElementById('favicon');
+      const dark = window.matchMedia('(prefers-color-scheme: dark)');
+      function update(e) {
+        favicon.href = e.matches
+          ? '/Data_Motion/favicon-dark.png'
+          : '/Data_Motion/favicon-light.png';
+      }
+      update(dark);
+      dark.addEventListener('change', update);
+    });
+  </script>
   <script type="module" crossorigin src="/Data_Motion/assets/index-DHe4nnak.js"></script>
   <link rel="stylesheet" crossorigin href="/Data_Motion/assets/index-Co_jaXI9.css">
 </head>
