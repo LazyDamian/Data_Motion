@@ -1,9 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
   <style>
-    image { filter: none; }
+    g { fill: #000000; }
     @media (prefers-color-scheme: dark) {
-      image { filter: invert(1); }
+      g { fill: #ffffff; }
     }
   </style>
-  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAD6ElEQVR4nO3ZzWtcVRgG8F8mKW2TRlMwVk3TpKWttRak4MIWKaIuFATd9E8QpSK6VhBddakL/wE1my40daMgEVwErJiFX9HQQqkxMZoIxrbapvlycc4kk9u5M/feSSdK88ALZ+6c9znPOe/5eO+5bGITtzdaMtbrwN2x/Dv+uTVytGNXLE/j70YJu/EWxjAe7Xu8js5GySvQidcid7mdsdh2d1HSIxjBcopdwEkhMq0F+Fuj78nIldbOSNSSCw9gtAZp2W7gK7yJJ4Twl2rwtsQ6j+MNnIsc9doZjZqqEibRjo/xZKauBizir2i/4mcsxP/KIragDz24A13yRW4Iz6qz/lqEkF5Wf1SabZejtjWDngx3B57Djgwj0mzsELR11KrUJ+wAGz3aaTYeNa4gGYGj6M0yHBuEXkHjCpIdeLp5WgpjjcZkB443UUhRpGrcJtuevCxsm4PYjb34JKNfNZ6zOXluRK034WiOhqdwoMJ3b8EO/Jbg6c/ot7IOKqdQnuN61toD5VIO30osY77i93xaxQRWtFZ24KE6TguYwaSQkS4mhExGm8ZSBp4Z3CWkIf1CJN6NvH/E/9N4qmodkh6yeZzBMRwSpkxbwv9QtEfwQWw8jed45DoTn01FW8SHeDTyvJ/CM5QUfyfO1+jAdGwwKw5iIgPPsfissk7lOXQghed81LwyhXarc0TnxPI6clVDh6B5ZRr0YnsNh514NZb/xBx+sZpxEqYPIcs8hfvq8IjlncKaIry8vIO3I3caz/aoebT84EVcV3vrmhfCPYEvcE+CdCJaeYHX45mO5fesLuJBq4t8ugbP9agZISc/XUd80n4S8voyWnL6V54D/RU8PTl8T6O1JJxqffKhS3jxKaO/erVM2JJSroc+cdp3Y1i+kVvER8KI9WsslRgsyDMctevFxYICNtIuordk7V3M/wm70F4STtX2OpX/i2jH3hIOb7SSBnC4hP0braIB7C9h30araAD72rCnAYI5IYscxqf4TkgxrlqbCi8Lh105hzmCp/CYsIVWfcPKgD2EY7vINvYjXhH271rXiWloETpzCj8U1DBDGMU8Tkv4HPcXFF6tIwfxmeq5fy2bIyRPeZxGhK13vdGHr3NqWYArORwuKHDVnQMPqn3VnrQrhA8JWSpP48QtFF/GCTe/paXZGAxkqDiLFxT7kJEXrbGt2Qy6BuAZXKtRaQrPY2sTxJexNbY5VUPXtahdl3A7ltwBlvAlHtackU+iNbZ9LkXbWUE7wmEyIFxQjeMbvGR9P+QVRSdexreCtkvCtU0Pa792tMSHbULo5pqpMgO24V7hPXpSiMQmNnHb41/tfJ6Djb/+SgAAAABJRU5ErkJggg==" width="48" height="48"/>
+  <g transform="translate(0,480) scale(1,-1)" stroke="none">
+    <path d="M1 353 l1 -128 15 70 c18 85 31 113 61 133 20 13 28 13 78 -7 31 -11
+68 -21 84 -21 16 0 53 10 84 21 50 20 58 20 78 7 30 -20 43 -48 61 -133 l15
+-70 1 128 1 127 -240 0 -240 0 1 -127z"/>
+    <path d="M150 304 c0 -9 -9 -18 -20 -21 -24 -6 -27 -23 -4 -23 9 0 18 -9 21
+-20 3 -11 10 -20 15 -20 5 0 12 9 15 20 3 11 12 20 19 20 8 0 14 5 14 10 0 6
+-6 10 -14 10 -7 0 -16 9 -19 20 -6 24 -27 27 -27 4z"/>
+    <path d="M330 310 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+-10 -4 -10 -10z"/>
+    <path d="M290 270 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+-10 -4 -10 -10z"/>
+    <path d="M370 270 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+-10 -4 -10 -10z"/>
+    <path d="M330 230 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0
+-10 -4 -10 -10z"/>
+    <path d="M186 140 c-16 -5 -48 -27 -70 -48 -48 -46 -70 -56 -97 -42 -17 10
+-19 7 -19 -20 l0 -30 240 0 240 0 0 30 c0 27 -2 30 -19 20 -27 -14 -58 0 -101
+44 -47 50 -107 66 -174 46z"/>
+  </g>
 </svg>
