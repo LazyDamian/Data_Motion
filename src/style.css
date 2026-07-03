@@ -84,7 +84,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .section-desc strong{color:var(--text);font-weight:600}
 
 /* ═══ 01 KREISLAUF ═════════════════════════════════════════════ */
-.cycle-layout{display:grid;grid-template-columns:480px 1fr;gap:3rem;align-items:center}
+.cycle-layout{display:grid;grid-template-columns:580px 1fr;gap:3rem;align-items:center}
 .cycle-mount{flex-shrink:0}
 .cycle-svg{width:100%;height:auto;display:block}
 
@@ -96,9 +96,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .node-dot-end{stroke:rgba(239,68,68,.6)}
 .cycle-node:hover .node-dot,.cycle-node.active .node-dot{fill:rgba(59,130,246,.18);stroke:var(--accent);stroke-width:2.5}
 .cycle-node.active .node-dot-end{fill:rgba(239,68,68,.18);stroke:var(--danger);stroke-width:2.5}
-.node-label{fill:var(--text);font-size:13px;font-weight:600;pointer-events:none}
+.node-label{fill:var(--text);font-size:16px;font-weight:600;pointer-events:none}
 .cycle-center-symbol{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.cycle-center{fill:var(--text-2);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.cycle-center{fill:var(--text-2);font-size:15px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 
 .cycle-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
   padding:2.25rem;min-height:320px}
@@ -149,7 +149,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .tip-dot.dot-pks{background:#ef4444}.tip-dot.dot-mkt{background:#3b82f6}
 .tip-event{color:#fca5a5;font-size:12px;margin-top:8px;font-weight:600;padding-top:6px;border-top:1px solid var(--border)}
 
-/* Scrolly-Schrittexte (rechte Spalte) */
+/* Scrolly-Schritttexte (rechte Spalte) */
 .scrolly-steps{padding:50vh 2rem 50vh 2rem;display:flex;flex-direction:column;gap:35vh}
 .scrolly-step{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
   padding:1.75rem 1.75rem;opacity:.55;transform:translateY(8px);
@@ -395,16 +395,74 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .reveal-up.visible,.reveal-scale.visible{opacity:1;transform:none}
 
 /* ═══ RESPONSIVE ═══════════════════════════════════════════════ */
-@media(max-width:960px){
+@media(max-width:1100px){
   .cycle-layout{grid-template-columns:1fr;gap:1.5rem}
-  .cycle-mount{max-width:400px;margin:0 auto}
+  .cycle-mount{max-width:500px;margin:0 auto}
 }
-@media(max-width:800px){
+@media(max-width:800px) {
   .nav-links{display:none}
   .metrics-grid{grid-template-columns:1fr}
-  .scrolly-inner{grid-template-columns:1fr}
-  .scrolly-graphic{height:55vh;position:relative;padding:1rem}
-  .scrolly-steps{padding:2rem;gap:3rem}
+
+  /* Scrollytelling Mobile-Optimierungen */
+  .scrolly-inner{grid-template-columns:1fr;position:relative}
+
+  .scrolly-graphic{
+    position: sticky;
+    top: 60px; /* Unter Navigationsleiste platzieren */
+    height: calc(50vh - 60px); /* Garantiert vollen Platz ohne Abschneiden */
+    padding: 0.5rem 1rem;
+    z-index: 1;
+    justify-content: center;
+  }
+  .scrolly-graphic .paradox-legend{padding-left:0;font-size:11px;gap:10px;margin-bottom:.25rem}
+  .paradox-mount { max-width: 100%; height: auto; }
+
+  .scrolly-steps{
+    padding: 0;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scrolly-step{
+    position: sticky;
+    top: 52vh; /* Wesentlich näher an die X-Achse geschoben */
+    margin: 0 auto 45vh;
+    width: calc(100% - 2rem);
+    padding: 1.25rem 1.5rem;
+    background: rgba(11,13,26,.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    opacity: 0; /* JS-gesteuertes, weiches Ein- und Ausblenden */
+    transform: translateY(15px);
+    transition: opacity .4s cubic-bezier(0.25, 1, 0.5, 1),
+                transform .4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color .4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    pointer-events: auto;
+  }
+
+  .scrolly-step:first-child{margin-top: 15vh}
+  .scrolly-step:last-child{margin-bottom: 35vh}
+
+  .scrolly-step.is-active{
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,.6), 0 0 0 1px var(--accent);
+  }
+
+  .scrolly-step.is-past{
+    opacity: 0 !important;
+    transform: translateY(-15px) !important;
+  }
+
+  .scrolly-step p{margin:0;font-size:14.5px;line-height:1.6;color:var(--text)}
+
   .hero-sub{font-size:1.05rem}
   .section-desc{font-size:1rem}
   .myth-value{font-size:3.5rem}
@@ -418,4 +476,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal-up,.reveal-scale{opacity:1;transform:none}
+}
+/* ─── Ganz unten in deiner style.css einfügen ─── */
+
+/* 1. Sanfter Einstieg von unten */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(50px); /* Startet 50px weiter unten */
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* Sichtbarer Zustand, sobald reingescrollt wird */
+.reveal-up.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 2. Sicherheitsabstand für die Textblöcke vor dem Graphen */
+.scrolly-container {
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.text-block {
+  margin-bottom: 120px;
+  padding-bottom: 40px;
+}
+
+/* Sorgt dafür, dass der allerletzte Textblock extra Platz zum Graphen hält */
+.text-block:last-child {
+  margin-bottom: 180px;
 }

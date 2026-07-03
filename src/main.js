@@ -34,9 +34,15 @@ const sectionIO = new IntersectionObserver(entries => {
 document.querySelectorAll('section[id]').forEach(s => sectionIO.observe(s));
 
 /* ─── Reveal-Animationen ─────────────────────────────────────── */
+// rootMargin auf -100px gesetzt: Triggered erst, wenn das Element 100px im Screen steht
 const revealIO = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -100px 0px' });
 document.querySelectorAll('.reveal-up, .reveal-scale').forEach(el => revealIO.observe(el));
 
 /* ─── Counter-Animation ──────────────────────────────────────── */
@@ -62,6 +68,7 @@ if (ms) counterIO.observe(ms);
 initHero();
 initCycle();
 initParadox();
+
 /* Mythbuster bekommt einen Callback: nach dem Aufdecken wird der
    Schulnoten-Chart einmalig mit voller Aufplopp-Animation initialisiert. */
 let researchInited = false;

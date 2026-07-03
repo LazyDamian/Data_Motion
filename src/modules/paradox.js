@@ -81,7 +81,6 @@ export function initParadox() {
   const linePks = document.createElementNS(NS, 'path');
   linePks.setAttribute('d', toPath(ptsPks));
   linePks.setAttribute('class', 'paradox-line line-pks');
-  const lenPks = 0;
   svg.appendChild(linePks);
 
   const lineMkt = document.createElementNS(NS, 'path');
@@ -135,13 +134,17 @@ export function initParadox() {
   linePks.style.strokeDasharray  = LP; linePks.style.strokeDashoffset = LP;
   lineMkt.style.strokeDasharray  = LM; lineMkt.style.strokeDashoffset = LM;
 
+  /* Mobile-Erkennung */
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+
   /* Scroll-Steuerung: zeichnet beide Linien, blendet Marker ein */
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '#paradox-steps',
-      start: 'top center',
-      end: 'bottom bottom',
+      start: isMobile ? 'top 95%' : 'top center',
+      end:   isMobile ? 'bottom 15%' : 'bottom bottom',
       scrub: 0.6,
+      invalidateOnRefresh: true,
     },
   });
   tl.to(linePks, { strokeDashoffset: 0, ease: 'none', duration: 1.2 })
@@ -150,14 +153,47 @@ export function initParadox() {
     .to(markers, { opacity: 1, stagger: 0.15, ease: 'power1.out', duration: 0.5 }, '>-0.2');
 
   /* Schritt-Texte aktivieren */
-  steps.forEach(step => {
-    ScrollTrigger.create({
-      trigger: step,
-      start: 'top center',
-      end: 'bottom center',
-      onToggle: self => step.classList.toggle('is-active', self.isActive),
+  if (isMobile) {
+    steps.forEach((step, idx) => {
+      // Setzt den funktionierenden Ausgangszustand per GSAP
+      gsap.set(step, { y: 120, opacity: 0 });
+
+      const stepTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: step,
+          start: 'top 95%',
+          end: 'top 20vh',
+          scrub: true,
+          invalidateOnRefresh: true,
+          onToggle: self => {
+            step.classList.toggle('is-active', self.isActive);
+            if (self.isActive) {
+              steps.forEach((s, i) => s.classList.toggle('is-past', i < idx));
+            }
+          }
+        }
+      });
+
+      // Die exakten, funktionierenden Animationsschritte:
+      stepTl.to(step, { y: 0, opacity: 1, duration: 0.4 })
+            .to(step, { y: 0, opacity: 1, duration: 0.3 })
+            .to(step, { y: -50, opacity: 0, duration: 0.3 });
     });
-  });
+  } else {
+    /* Desktop: Steps sind normal sichtbar in der rechten Spalte */
+    steps.forEach(step => {
+      ScrollTrigger.create({
+        trigger: step,
+        start: 'top center',
+        end:   'bottom center',
+        invalidateOnRefresh: true,
+        onToggle: self => step.classList.toggle('is-active', self.isActive),
+      });
+    });
+  }
+
+  /* Nach initialem Zeichnen einmalig refreshen */
+  setTimeout(() => ScrollTrigger.refresh(), 100);
 
   /* ─── Hover-Interaktion ─── */
   function showAt(clientX) {

@@ -48,7 +48,7 @@ export function initRadarChart(canvasId) {
           backgroundColor: 'rgba(163,230,53,0.2)', borderColor: '#a3e635',
           borderWidth: 2, pointBackgroundColor: '#a3e635' },
         { label: 'Anforderung Drohnenpilot', data: radarRequirement,
-          backgroundColor: 'rgba(59,130,246,0.05)', borderColor: 'rgba(59,130,246,0.5)',
+          backgroundColor: 'rgba(204,0,0,0.3)', borderColor: 'rgba(204,0,0)',
           borderWidth: 1, borderDash: [5, 5], pointRadius: 0 },
       ],
     },

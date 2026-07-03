@@ -6,7 +6,7 @@ export function initCycle() {
   const panel = document.getElementById('cycle-panel');
   if (!mount) return;
 
-  const size = 480, c = size / 2, r = 165;
+  const size = 580, c = size / 2, r = 205;
   const NS = 'http://www.w3.org/2000/svg';
 
   const svg = document.createElementNS(NS, 'svg');
@@ -38,8 +38,8 @@ export function initCycle() {
 
   /* Gekrümmte Bögen zwischen den vier Knoten (im Uhrzeigersinn) */
   const angles = [-90, 0, 90, 180];
-  const nodeR = 40;
-  const gap   = 8;       /* Abstand zwischen Pfeilende und Knotenrand */
+  const nodeR = 52;
+  const gap   = 10;      /* Abstand zwischen Pfeilende und Knotenrand */
   const arcs = [];
   for (let i = 0; i < 4; i++) {
     const a1 = (angles[i] * Math.PI) / 180;
@@ -96,7 +96,7 @@ export function initCycle() {
 
     const dot = document.createElementNS(NS, 'circle');
     dot.setAttribute('cx', x); dot.setAttribute('cy', y);
-    dot.setAttribute('r', 40);
+    dot.setAttribute('r', 52);
     dot.setAttribute('class', phase.key === 'kein' ? 'node-dot node-dot-end' : 'node-dot');
 
     const label = document.createElementNS(NS, 'text');
@@ -106,10 +106,10 @@ export function initCycle() {
     /* mehrzeilig: einfacher Umbruch per tspan bei Bedarf */
     const words = phase.label.split(' ');
     if (words.length > 1) {
-      label.setAttribute('y', y - 3);
+      label.setAttribute('y', y - 4);
       words.forEach((w, k) => {
         const ts = document.createElementNS(NS, 'tspan');
-        ts.setAttribute('x', x); ts.setAttribute('dy', k === 0 ? 0 : 16);
+        ts.setAttribute('x', x); ts.setAttribute('dy', k === 0 ? 0 : 19);
         ts.textContent = w;
         label.appendChild(ts);
       });
@@ -127,14 +127,14 @@ export function initCycle() {
   const centerSymbol = document.createElementNS(NS, 'path');
   /* zwei halbkreisförmige Pfeile, die einen Kreislauf andeuten */
   centerSymbol.setAttribute('d',
-    `M ${c - 16} ${c} A 16 16 0 0 1 ${c + 16} ${c} M ${c + 13} ${c - 5} L ${c + 16} ${c} L ${c + 19} ${c - 5} ` +
-    `M ${c + 16} ${c} A 16 16 0 0 1 ${c - 16} ${c} M ${c - 13} ${c + 5} L ${c - 16} ${c} L ${c - 19} ${c + 5}`);
+    `M ${c - 20} ${c} A 20 20 0 0 1 ${c + 20} ${c} M ${c + 16} ${c - 7} L ${c + 20} ${c} L ${c + 24} ${c - 7} ` +
+    `M ${c + 20} ${c} A 20 20 0 0 1 ${c - 20} ${c} M ${c - 16} ${c + 7} L ${c - 20} ${c} L ${c - 24} ${c + 7}`);
   centerSymbol.setAttribute('class', 'cycle-center-symbol');
   svg.appendChild(centerSymbol);
 
   /* Zentraltext darunter */
   const center = document.createElementNS(NS, 'text');
-  center.setAttribute('x', c); center.setAttribute('y', c + 36);
+  center.setAttribute('x', c); center.setAttribute('y', c + 44);
   center.setAttribute('text-anchor', 'middle');
   center.setAttribute('class', 'cycle-center');
   center.textContent = 'Endlosschleife';
