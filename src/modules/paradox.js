@@ -215,7 +215,7 @@ export function initParadox() {
       <div class="tip-row"><span class="tip-dot dot-mkt"></span>${marktMio[i].toLocaleString('de-DE')} Mio. € Marktumsatz</div>
       ${ev ? `<div class="tip-event">⚑ ${ev.title}</div>` : ''}
     `;
-    const leftPct = (gx / W) * 100;
+    const leftPct = (gx / W) * 99;
     tip.style.left = `${leftPct}%`;
     tip.style.opacity = 1;
   }

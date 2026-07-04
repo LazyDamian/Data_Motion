@@ -503,7 +503,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
   transform: translateY(0) scale(1);
 }
 
-/* 2. Sicherheitsabstand für die Textblöcke vor dem Graphen */
+/* 2. Sicherheitsabstand für die Textblöcke vor dem Graphen. */
 .scrolly-container {
   position: relative;
   margin-bottom: 80px;
