@@ -60,8 +60,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 #section-metrics{padding:3.5rem 0 1rem}
 .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
 .metric-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:2rem 1.75rem;transition:border-color .25s,transform .25s}
-.metric-card:hover{border-color:var(--border-h);transform:translateY(-4px)}
+  padding:2rem 1.75rem;transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease,background .3s ease;
+  cursor:default;transform:scale(1)}
+.metric-card:hover,
+.metric-card.reveal-up:hover,
+.metric-card.reveal-scale:hover{transform:translateY(-4px) scale(1.04) !important}
+.metric-card:nth-child(1):hover{border-color:var(--danger);background:rgba(239,68,68,.08);
+  box-shadow:0 0 0 1px var(--danger),0 0 32px rgba(239,68,68,.35)}
+.metric-card:nth-child(2):hover{border-color:var(--accent);background:rgba(59,130,246,.08);
+  box-shadow:0 0 0 1px var(--accent),0 0 32px rgba(59,130,246,.35)}
+.metric-card:nth-child(3):hover{border-color:var(--pink);background:rgba(212,83,126,.08);
+  box-shadow:0 0 0 1px var(--pink),0 0 32px rgba(212,83,126,.35)}
 .metric-num{font-size:3rem;font-weight:700;letter-spacing:-.04em;margin-bottom:.6rem;font-variant-numeric:tabular-nums}
 .metric-card:nth-child(1) .metric-num{color:var(--danger)}
 .metric-card:nth-child(2) .metric-num{color:var(--accent)}
@@ -503,7 +512,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
   transform: translateY(0) scale(1);
 }
 
-/* 2. Sicherheitsabstand für die Textblöcke vor dem Graphen. */
+/* 2. Sicherheitsabstand für die Textblöcke vor dem Graphen */
 .scrolly-container {
   position: relative;
   margin-bottom: 80px;
