@@ -89,10 +89,5 @@ Baut das Projekt (`vite build`) und veröffentlicht den `dist`-Ordner auf den `g
 
 Zentrale Quellen unter anderem: Wissenschaftliche Dienste des Deutschen Bundestages (WD-9-223-06), KFN-Forschungsberichte (Pfeiffer et al.), Hans-Bredow-Institut Hamburg, Bundeskriminalamt (PKS), DJI „Zahlen-Daten-Fakten Jugendgewalt". Die vollständige Liste inklusive Sekundärliteratur zu Gaming & Defense steht im Quellen-Abschnitt der Website selbst.
 
----
-
-## Kontext
-
-Entstanden im Kurs **Data Motion / Data Interaction** an der TH Nürnberg (Social Data Science & Communication).
 
 **Autor:** Damian Rutz ([@LazyDamian](https://github.com/LazyDamian))
