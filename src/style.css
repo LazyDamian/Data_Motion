@@ -61,7 +61,7 @@ canvas,svg,img,video{max-width:100%}
     rgba(59,130,246,.08),transparent 60%);transition:background .15s}
 
 /* ═══ KENNZAHLEN ═══════════════════════════════════════════════ */
-#section-metrics{padding:3.5rem 0 1rem}
+#section-metrics{padding-top:3.5rem;padding-bottom:1rem;padding-left:0;padding-right:0}
 .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
 .metric-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
   padding:2rem 1.75rem;transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease,background .3s ease;
@@ -424,6 +424,8 @@ canvas,svg,img,video{max-width:100%}
   .cycle-mount{max-width:500px;margin:0 auto}
 }
 @media(max-width:800px) {
+  .container{padding:0 2.5rem}
+  #section-metrics{padding-left:2.5rem;padding-right:2.5rem}
   .nav-links{display:none}
   .metrics-grid{grid-template-columns:1fr}
 
