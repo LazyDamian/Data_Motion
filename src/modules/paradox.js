@@ -60,7 +60,7 @@ export function initParadox() {
   const axL = document.createElementNS(NS, 'text');
   axL.setAttribute('x', pad.l - 6); axL.setAttribute('y', pad.t - 22);
   axL.setAttribute('class', 'paradox-axis-title'); axL.setAttribute('fill', '#ef4444');
-  axL.textContent = 'Gewalt-TVBZ (je 100.000 Jugendliche)';
+  axL.textContent = 'Jugendgewalt (je 100.000 Jugendliche)';
   svg.appendChild(axL);
   const axR = document.createElementNS(NS, 'text');
   axR.setAttribute('x', W - pad.r + 6); axR.setAttribute('y', pad.t - 22);
@@ -211,7 +211,7 @@ export function initParadox() {
     const ev = eventLookup.find(e => e.year === years[i]);
     tip.innerHTML = `
       <div class="tip-year">${years[i]}</div>
-      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} TVBZ Jugendgewalt</div>
+      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} Jugendgewalten</div>
       <div class="tip-row"><span class="tip-dot dot-mkt"></span>${marktMio[i].toLocaleString('de-DE')} Mio. € Marktumsatz</div>
       ${ev ? `<div class="tip-event">⚑ ${ev.title}</div>` : ''}
     `;

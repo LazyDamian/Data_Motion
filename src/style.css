@@ -13,6 +13,10 @@
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
      background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+/* Sicherheitsnetz: kein Medienelement darf breiter als sein Container werden.
+   Beeinflusst keine Scroll-/Sticky-Berechnung, da hier weder overflow noch
+   position an Vorfahren-Elementen geändert wird. */
+canvas,svg,img,video{max-width:100%}
 .container{max-width:880px;margin:0 auto;padding:0 2rem}
 .container-wide{max-width:1200px;margin:0 auto;padding:0 2rem}
 
@@ -184,6 +188,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
   color:var(--accent);margin-bottom:.75rem}
 .research-fazit p{font-size:1.1rem;color:var(--text);line-height:1.75}
 
+/* ═══ GESAMT-FAZIT DER SEITE ═══════════════════════════════════ */
+.site-fazit{max-width:1200px;margin:3.5rem auto 0;text-align:center;
+  background:linear-gradient(180deg,rgba(59,130,246,.06),rgba(212,83,126,.04));
+  border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+  padding:2.75rem 2.25rem}
+.site-fazit-tag{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.25rem}
+.site-fazit p{font-size:1.1rem;color:var(--text);line-height:1.75;font-weight:400;
+  max-width:840px;margin:0 auto}
+
 /* ═══ 03 MYTHOS-CHECK ══════════════════════════════════════════ */
 .myth-box{max-width:620px;margin:0;background:var(--bg-card);border:1px solid var(--border);
   border-radius:var(--radius);padding:2.5rem}
@@ -243,6 +257,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 
 /* ═══ 06 ETHIK (Original-Layout im dunklen Theme) ══════════════ */
 .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.card-grid-single{grid-template-columns:1fr;max-width:760px;margin-left:auto;margin-right:auto}
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
 .card-h3{font-size:17px;font-weight:600;color:var(--text);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
 .card-icon{font-size:14px}
@@ -261,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
 .skill-slider{flex:1;accent-color:#a3e635;cursor:pointer}
 .val-badge{min-width:42px;text-align:center;font-size:13px;font-weight:600;color:#a3e635;
   background:rgba(163,230,53,.1);border-radius:var(--radius-sm);padding:4px 8px;font-variant-numeric:tabular-nums}
-.chart-wrapper{position:relative;height:320px;margin-top:1.25rem}
+.chart-wrapper{position:relative;height:420px;margin-top:1.25rem}
 
 /* Split-Layout (Text neben Chart/Zitat) */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
