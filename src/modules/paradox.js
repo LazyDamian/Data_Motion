@@ -60,7 +60,7 @@ export function initParadox() {
   const axL = document.createElementNS(NS, 'text');
   axL.setAttribute('x', pad.l - 6); axL.setAttribute('y', pad.t - 22);
   axL.setAttribute('class', 'paradox-axis-title'); axL.setAttribute('fill', '#ef4444');
-  axL.textContent = 'Jugendgewalt (je 100.000 Jugendliche)';
+  axL.textContent = 'Gewalt-TVBZ (je 100.000 Jugendliche)';
   svg.appendChild(axL);
   const axR = document.createElementNS(NS, 'text');
   axR.setAttribute('x', W - pad.r + 6); axR.setAttribute('y', pad.t - 22);
@@ -137,7 +137,7 @@ export function initParadox() {
   /* Mobile-Erkennung */
   const isMobile = window.matchMedia('(max-width: 800px)').matches;
 
-  /* Scroll-Steuerung: zeichnet beide Linien, blendet Marker ein */
+  /* Scroll-Steuerung: zeichnet beide Linien (Marker separat, siehe unten) */
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '#paradox-steps',
@@ -149,8 +149,24 @@ export function initParadox() {
   });
   tl.to(linePks, { strokeDashoffset: 0, ease: 'none', duration: 1.2 })
     .to(area,    { opacity: 1, ease: 'none', duration: 0.6 }, '<0.3')
-    .to(lineMkt, { strokeDashoffset: 0, ease: 'none', duration: 1.2 }, '>-0.3')
-    .to(markers, { opacity: 1, stagger: 0.15, ease: 'power1.out', duration: 0.5 }, '>-0.2');
+    .to(lineMkt, { strokeDashoffset: 0, ease: 'none', duration: 1.2 }, '>-0.3');
+
+  /* Marker (2007/2009) werden NICHT mehr am Ende der Gesamt-Timeline
+     eingeblendet, sondern synchron mit dem Textblock, der inhaltlich von
+     diesen Ereignissen spricht (der dritte von vier Steps). Vorher blendeten
+     sie erst ganz am Schluss ein, wenn der passende Text schon fast wieder
+     aus dem Bild gescrollt war. */
+  const eventStep = steps[2];
+  if (eventStep) {
+    gsap.set(markers, { opacity: 0 });
+    ScrollTrigger.create({
+      trigger: eventStep,
+      start: isMobile ? 'top 85%' : 'top 75%',
+      invalidateOnRefresh: true,
+      onEnter:     () => gsap.to(markers, { opacity: 1, stagger: 0.15, duration: 0.4, ease: 'power1.out', overwrite: true }),
+      onLeaveBack: () => gsap.to(markers, { opacity: 0, duration: 0.3, overwrite: true }),
+    });
+  }
 
   /* Schritt-Texte aktivieren */
   if (isMobile) {
@@ -211,11 +227,11 @@ export function initParadox() {
     const ev = eventLookup.find(e => e.year === years[i]);
     tip.innerHTML = `
       <div class="tip-year">${years[i]}</div>
-      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} Jugendgewalten</div>
+      <div class="tip-row"><span class="tip-dot dot-pks"></span>${pksTsd[i]} TVBZ Jugendgewalt</div>
       <div class="tip-row"><span class="tip-dot dot-mkt"></span>${marktMio[i].toLocaleString('de-DE')} Mio. € Marktumsatz</div>
       ${ev ? `<div class="tip-event">⚑ ${ev.title}</div>` : ''}
     `;
-    const leftPct = (gx / W) * 99;
+    const leftPct = (gx / W) * 100;
     tip.style.left = `${leftPct}%`;
     tip.style.opacity = 1;
   }

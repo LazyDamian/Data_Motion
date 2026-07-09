@@ -15,38 +15,82 @@ function regression(points) {
   return [{ x: x0, y: slope * x0 + intercept }, { x: x1, y: slope * x1 + intercept }];
 }
 
+/* Plugin: zeichnet ausgewählte Datasets (per Index) nur innerhalb einer
+   Clip-Box, deren Breite animierbar ist. Damit lässt sich eine Linie von
+   links nach rechts "selbst zeichnen", ähnlich dem SVG-Trick beim
+   Paradox-Graph, nur eben für ein Canvas-basiertes Chart.js-Diagramm. */
+const lineDrawClipPlugin = {
+  id: 'lineDrawClip',
+  beforeDatasetDraw(chart, args) {
+    const clip = chart.$lineClip;
+    if (!clip || !clip.dsIndices.includes(args.index)) return;
+    const { ctx, chartArea } = chart;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(chartArea.left, chartArea.top - 20, clip.width, chartArea.height + 40);
+    ctx.clip();
+  },
+  afterDatasetDraw(chart, args) {
+    const clip = chart.$lineClip;
+    if (!clip || !clip.dsIndices.includes(args.index)) return;
+    chart.ctx.restore();
+  },
+};
+
+/* Lässt eine oder mehrere Trendlinien von links nach rechts "wachsen".
+   dsIndices: die Dataset-Indizes der betroffenen Linien. */
+function animateLinesDraw(chart, dsIndices, duration = 700) {
+  dsIndices.forEach(i => chart.setDatasetVisibility(i, true));
+  chart.$lineClip = { dsIndices, width: 0 };
+  const start = performance.now();
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    chart.$lineClip.width = chart.chartArea.width * easeOutCubic(t);
+    chart.draw();
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      chart.$lineClip = null;   /* Clip entfernen, danach ganz normal weiterzeichnen */
+      chart.draw();
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
 export function initResearch(canvasId) {
   const ctx = document.getElementById(canvasId).getContext('2d');
 
-  /* Animation: Punkte ploppen gestaffelt auf, dann erscheinen die Trendlinien */
-
+  /* Chart.js' eigene Init-Animation läuft sofort beim Erstellen ab, egal ob
+     der Container zu dem Zeitpunkt sichtbar ist. Läuft initResearch() also
+     erst nach dem Scrollen ins Bild, ist sie oft schon vorbei, bevor man
+     hinschaut, oder wirkt bei falsch berechneter Canvas-Größe unsauber.
+     Deshalb starten die Punkte hier mit Radius 0 (unsichtbar), die
+     Trendlinien sind zu Beginn ausgeblendet. Die eigentliche, garantiert
+     sichtbare Animation übernimmt danach animateGroupIn() / animateLinesDraw()
+     manuell. */
   const chart = new Chart(ctx, {
     type: 'scatter',
+    plugins: [lineDrawClipPlugin],
     data: {
       datasets: [
         { label: 'Jungen', data: researchBoys, backgroundColor: 'rgba(59,130,246,0.65)',
-          borderColor: '#3b82f6', borderWidth: 1.5, pointRadius: 10, pointHoverRadius: 14 },
+          borderColor: '#3b82f6', borderWidth: 1.5, pointRadius: 0, pointHoverRadius: 14 },
         { label: 'Trend Jungen', data: regression(researchBoys), type: 'line',
           borderColor: 'rgba(59,130,246,0.6)', borderWidth: 2.5, borderDash: [6, 4],
-          pointRadius: 0, fill: false, tension: 0 },
+          pointRadius: 0, fill: false, tension: 0, hidden: true },
         { label: 'Mädchen', data: researchGirls, backgroundColor: 'rgba(212,83,126,0.65)',
-          borderColor: '#d4537e', borderWidth: 1.5, pointRadius: 10, pointHoverRadius: 14 },
+          borderColor: '#d4537e', borderWidth: 1.5, pointRadius: 0, pointHoverRadius: 14 },
         { label: 'Trend Mädchen', data: regression(researchGirls), type: 'line',
           borderColor: 'rgba(212,83,126,0.6)', borderWidth: 2.5, borderDash: [6, 4],
-          pointRadius: 0, fill: false, tension: 0 },
+          pointRadius: 0, fill: false, tension: 0, hidden: true },
       ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      animation: {
-        duration: 700,
-        easing: 'easeOutBack',
-        delay: (ctx) => {
-          if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
-          if (ctx.dataset.label?.startsWith('Trend')) return ctx.dataIndex * 200 + 800;
-          return ctx.dataIndex * 80 + (ctx.datasetIndex < 2 ? 0 : 200);
-        },
-      },
+      animation: false,
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -66,6 +110,17 @@ export function initResearch(canvasId) {
       },
     },
   });
+
+  /* Initiale Aufplopp-Animation: erst nach zwei rAF-Ticks starten, damit
+     Chart.js seine Canvas-Größe garantiert final berechnet hat (verhindert
+     Ruckeln durch nachträgliches Neu-Skalieren mitten in der Animation). */
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    animateGroupIn(chart, 0);                 /* Jungen-Punkte */
+    setTimeout(() => animateGroupIn(chart, 2), 180); /* Mädchen-Punkte, leicht versetzt */
+    /* Trendlinien zeichnen sich von links nach rechts, wenn die Punkte
+       fast fertig geploppt sind */
+    setTimeout(() => animateLinesDraw(chart, [1, 3], 800), 900);
+  }));
 
   /* Geschlechter-Filter: Datasets paarweise (Punkte + Trend) schalten */
   const container = document.getElementById(canvasId).closest('.chart-container');
@@ -88,11 +143,9 @@ export function initResearch(canvasId) {
           chart.setDatasetVisibility(lineIdx, false);
           chart.update('none');
           animateGroupIn(chart, pair[0]);
-          /* Trendlinie erscheint, wenn die Punkte fast fertig sind */
-          setTimeout(() => {
-            chart.setDatasetVisibility(lineIdx, true);
-            chart.update();   /* weiche Standard-Animation zeichnet die Linie */
-          }, 320);
+          /* Trendlinie zeichnet sich von links nach rechts, wenn die
+             Punkte fast fertig sind */
+          setTimeout(() => animateLinesDraw(chart, [lineIdx], 700), 320);
         } else {
           /* Ausblenden: erst Punkte gestaffelt schrumpfen, dann verbergen */
           /* Sichtbarkeit oben war schon gesetzt → für die Schrumpf-Animation rückgängig */
@@ -105,10 +158,11 @@ export function initResearch(canvasId) {
   }
 }
 
-/* Punkte eines Datasets gestaffelt einploppen lassen (Radius 0 -> Endgröße) */
-function animateGroupIn(chart, pointDsIndex) {
+/* Punkte eines Datasets gestaffelt einploppen lassen (Radius 0 -> Endgröße).
+   finalR explizit übergeben, da ds.pointRadius beim initialen Aufbau selbst
+   0 ist (Ausgangszustand) und sonst fälschlich als Zielgröße gelesen würde. */
+function animateGroupIn(chart, pointDsIndex, finalR = 10) {
   const ds = chart.data.datasets[pointDsIndex];
-  const finalR = ds.pointRadius ?? 10;
   const STAGGER = 70;   /* ms zwischen Punkten */
   const GROW = 380;     /* ms Aufplopp-Dauer pro Punkt */
   const start = performance.now();

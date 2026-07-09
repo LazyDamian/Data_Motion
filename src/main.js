@@ -69,13 +69,34 @@ initCycle();
 initParadox();
 
 /* Mythbuster bekommt einen Callback: nach dem Aufdecken wird der
-   Schulnoten-Chart einmalig mit voller Aufplopp-Animation initialisiert. */
+   Schulnoten-Chart-Bereich sichtbar gemacht (kein "hidden" mehr).
+   Der Chart selbst wird aber NICHT sofort initialisiert, sondern erst,
+   wenn er tatsächlich durch Scrollen in den Viewport gerät.
+   Zwei unabhängige Flags statt IntersectionObserver: robuster, weil kein
+   Timing-Problem entstehen kann, falls das Element beim Setup des
+   Observers noch "hidden" war (keine Layout-Box, dadurch nie erkannt). */
+let researchRevealed = false;
 let researchInited = false;
+
+function tryInitResearch() {
+  if (researchInited || !researchRevealed) return;
+  const chartEl = document.getElementById('chartResearch');
+  if (!chartEl) return;
+  const rect = chartEl.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+  if (inView) {
+    researchInited = true;
+    initResearch('chartResearch');
+  }
+}
+
 initMythbuster(() => {
-  if (researchInited) return;
-  researchInited = true;
-  initResearch('chartResearch');
+  researchRevealed = true;
+  tryInitResearch();   /* sofort prüfen, falls der Chart schon im Bild ist */
 });
+
+window.addEventListener('scroll', tryInitResearch, { passive: true });
+window.addEventListener('resize', tryInitResearch);
 
 /* ─── Lazy-init für Charts und Simulator (erst bei Sichtbarkeit) ── */
 const lazyIO = new IntersectionObserver(entries => {
