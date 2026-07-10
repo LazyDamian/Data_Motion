@@ -545,7 +545,7 @@ canvas,svg,img,video{max-width:100%}
   padding-bottom: 40px;
 }
 
-/* Sorgt dafür, dass der allerletzte Textblock extra Platz zum Graphen hält */
+/*Sorgt dafür, dass der allerletzte Textblock extra Platz zum Graphen hält */
 .text-block:last-child {
   margin-bottom: 180px;
 }

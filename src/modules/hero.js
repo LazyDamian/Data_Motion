@@ -63,7 +63,7 @@ export function initHero() {
     });
   });
 
-  /* Maus-Parallax + Cursor-Glow */
+  /* Maus-Parallax +Cursor-Glow */
   hero.addEventListener('mousemove', (e) => {
     const rect = hero.getBoundingClientRect();
     const mx = (e.clientX - rect.left) / rect.width  - 0.5;
