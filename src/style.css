@@ -429,6 +429,11 @@ canvas,svg,img,video{max-width:100%}
   .nav-links{display:none}
   .metrics-grid{grid-template-columns:1fr}
 
+  /* Sicherheitsnetz für die schwebenden Hero-Schlagzeilen: falls trotz
+     engerer Positionierung in hero.js ein Text zu lang ist, bricht er
+     um statt über den Bildschirmrand hinauszuragen. */
+  .headline-ghost{white-space:normal;max-width:62vw;line-height:1.3}
+
   /* Scrollytelling Mobile-Optimierungen */
   .scrolly-inner{grid-template-columns:1fr;position:relative}
 
